@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+# install ansible if not defined
+if ! [ -x "$(command -v ansible)" ]; then
+    sudo apt update
+    sudo apt install -y ansible
+fi
