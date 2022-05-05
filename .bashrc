@@ -118,8 +118,8 @@ fi
 
 ##-----------------------------------------------------
 ## synth-shell-prompt.sh
-if [ -f /home/marko/.config/synth-shell/synth-shell-prompt.sh ] && [ -n "$( echo $- | grep i )" ]; then
-	source /home/marko/.config/synth-shell/synth-shell-prompt.sh
+if [ -f "$HOME/.config/synth-shell/synth-shell-prompt.sh" ] && [ -n "$( echo $- | grep i )" ]; then
+	source "$HOME/.config/synth-shell/synth-shell-prompt.sh"
 fi
 
 . "$HOME/.cargo/env"
