@@ -1,8 +1,27 @@
 #!/bin/bash
 set -e
 
+DOTFILES_DIR="$HOME/.dotfiles"
+SSH_DIR="$HOME/.ssh"
+
 # install ansible if not defined
 if ! [ -x "$(command -v ansible)" ]; then
     sudo apt update -y
     sudo apt install -y ansible
 fi
+
+# generate an ssh key if nonexistent
+if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
+    mkdir -p "$SSH_DIR"
+
+    chmod 700 "$SSH_DIR"
+
+    ssh_keygen -b 4096 -t rsa -f "$SSH_DIR/id_rsa" -N "" -C "USER@HOSTNAME"
+
+    cat "$SSH_DIR/id_rsa.pub" >> "$SSH_DIR/authorized_keys"
+
+    chmod 600 "$SSH_DIR/authorized_keys"
+fi
+
+# Move into dotfiles and let ansible work it's magic
+cd "$DOTFILES_DIR"
