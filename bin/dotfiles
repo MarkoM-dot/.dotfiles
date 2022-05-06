@@ -24,4 +24,8 @@ if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
 fi
 
 # Move into dotfiles and let ansible work it's magic
-cd "$DOTFILES_DIR"
+if [[ -f "$DOTFILES_DIR/requirements.yml" ]]; then
+    cd "$DOTFILES_DIR"
+
+    ansible-galaxy install -r requirements.yml
+fi
