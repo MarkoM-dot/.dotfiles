@@ -1,4 +1,5 @@
 \.git
+\.github
 misc
 ^/README.*
 ^/LICENSE.*
