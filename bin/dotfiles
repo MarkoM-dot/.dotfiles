@@ -10,6 +10,11 @@ if ! [ -x "$(command -v ansible)" ]; then
     sudo apt install -y ansible
 fi
 
+# install stow if not defined
+if ! [ -x "$(command -v stow)" ]; then
+    sudo apt install -y stow
+fi
+
 # generate an ssh key if nonexistent
 if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
     mkdir -p "$SSH_DIR"
