@@ -3,3 +3,4 @@ misc
 ^/README.*
 ^/LICENSE.*
 ^/.*\.org
+*.yml
