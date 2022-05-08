@@ -49,4 +49,4 @@ if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
     chmod 600 "$SSH_DIR/authorized_keys"
 fi
 
-ansible-playbook -i "$REPO_DIR/hosts" "$REPO_DIR/main.yml" --ask-become-pass"
+ansible-playbook -i "$REPO_DIR/hosts" "$REPO_DIR/main.yml" --ask-become-pass
