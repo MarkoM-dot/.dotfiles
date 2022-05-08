@@ -1,4 +1,5 @@
 # Machine Configuration
+![CI](https://github.com/MarkoM-dot/.dotfiles/actions/workflows/build.yml/badge.svg)
 
 ### Ansible
 
