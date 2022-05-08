@@ -1,8 +1,8 @@
 ---
-- name: Set up local machine
-  host: localhost
-  connection: local
-  roles:
-    - role: ripgrep
-      tags:
-        - ripgrep
+  - name: Set up local machine
+    host: localhost
+    connection: local
+    roles:
+      - role: ripgrep
+        tags:
+          - ripgrep
