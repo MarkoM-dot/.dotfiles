@@ -66,6 +66,3 @@ jobs:
 
       - name: Run executable
         run: ${{ github.workspace }}\bin\dotfiles.bat
-
-      - name: Confirm ansible exists
-        run: ansible --version
