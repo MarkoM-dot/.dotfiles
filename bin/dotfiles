@@ -8,27 +8,39 @@ OS="`uname`"
 case $OS in
 
     'Linux')
+        if ! [ -x "$(command -v ansible)" ]; then
+            sudo apt update -y
+            sudo apt install -y ansible
+        fi
+
+        if ! [ -x "$(command -v stow)" ]; then
+            sudo apt install -y stow
+        fi
+
+
         echo "It's Linux";;
 
     'Darwin')
+        if ! [ -x "$(command -v brew)" ]; then
+            curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh
+        fi
+
+        if ! [ -x "$(command -v ansible)" ]; then
+            brew install ansible
+        fi
+
+        if ! [ -x "$(command -v stow)" ]; then
+            brew install stow
+        fi
+
         echo "It's MacOS";;
 
     'WindowsNT')
         echo "It's Windows";;
     *)
-        echo $OS;;
+        echo "Executable not configured for $OS"
+        exit 1;;
 esac
-
-# install ansible if not defined
-if ! [ -x "$(command -v ansible)" ]; then
-    sudo apt update -y
-    sudo apt install -y ansible
-fi
-
-# install stow if not defined
-if ! [ -x "$(command -v stow)" ]; then
-    sudo apt install -y stow
-fi
 
 # generate an ssh key if nonexistent
 if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
