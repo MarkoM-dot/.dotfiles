@@ -6,7 +6,10 @@
       #- role: ripgrep
         #        tags:
 #          - ripgrep
-  - name: Test
-    ansible.builtin.command: 'ls -l *'
-    register: command_output
+  - name: Test Shell
+    hosts: all
+    tasks:
+      - name: List files and folders
+        ansible.builtin.command: 'ls -l'
+        register: command_output
 
