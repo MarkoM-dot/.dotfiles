@@ -1,0 +1,3 @@
+- src: https://github.com/BurntSushi/ripgrep
+  version: master
+  name: rg
