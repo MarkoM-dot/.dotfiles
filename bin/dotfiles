@@ -2,6 +2,7 @@
 set -e
 
 EXE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+REPO_DIR=$(dirname "$EXE_DIR")
 DOTFILES_DIR="$HOME/.dotfiles"
 SSH_DIR="$HOME/.ssh"
 
@@ -16,11 +17,7 @@ case $OS in
 
         if ! [ -x "$(command -v stow)" ]; then
             sudo apt install -y stow
-        fi
-
-
-        echo "It's Linux"
-        echo "$EXE_DIR";;
+        fi;;
 
     'Darwin')
         if ! [ -x "$(command -v brew)" ]; then
@@ -33,14 +30,7 @@ case $OS in
 
         if ! [ -x "$(command -v stow)" ]; then
             brew install stow
-        fi
-
-        echo "It's MacOS"
-        echo "$EXE_DIR";;
-
-    'WindowsNT')
-        echo "It's Windows"
-        echo "$EXE_DIR";;
+        fi;;
     *)
         echo "Executable not configured for $OS"
         exit 1;;
@@ -60,10 +50,10 @@ if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
 fi
 
 # Move into dotfiles and let ansible work it's magic
-if [[ -f "$DOTFILES_DIR/requirements.yml" ]]; then
-    cd "$DOTFILES_DIR"
+if [[ -f "$REPO_DIR/requirements.yml" ]]; then
+    cd "$REPO_DIR"
 
     ansible-galaxy install -r requirements.yml
 fi
 
-ansible-playbook --diff "$DOTFILES_DIR/main.yml"
+ansible-playbook --diff "$REPO_DIR/main.yml"
