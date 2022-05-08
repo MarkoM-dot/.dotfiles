@@ -4,6 +4,21 @@ set -e
 DOTFILES_DIR="$HOME/.dotfiles"
 SSH_DIR="$HOME/.ssh"
 
+OS="`uname`"
+case $OS in
+
+    'Linux')
+        echo "It's Linux";;
+
+    'Darwin')
+        echo "It's MacOS";;
+
+    'WindowsNT')
+        echo "It's Windows";;
+    *)
+        echo $OS;;
+esac
+
 # install ansible if not defined
 if ! [ -x "$(command -v ansible)" ]; then
     sudo apt update -y
