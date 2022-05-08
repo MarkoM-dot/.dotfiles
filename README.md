@@ -12,6 +12,13 @@ If you wish to remove the symbolic links created by stow, execute the following 
 stow -D .
 ```
 
+### Project Layout
+
+
+    ├─ bin/             build scripts
+    ├─ .config/         configuration settings
+    └─ .github/         build automation
+
 ### Tools
 
 - bash
