@@ -3,6 +3,7 @@
 \bin
 
 misc
+hosts
 
 ^/README.*
 ^/LICENSE.*
