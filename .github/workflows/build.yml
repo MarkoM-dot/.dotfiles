@@ -22,7 +22,7 @@ jobs:
         run: ${{ github.workspace }}/bin/dotfiles
 
       - name: Confirm ansible exists
-        run: ansible -v
+        run: ansible --version
 
   macos-build:
     runs-on: macos-latest
@@ -45,7 +45,7 @@ jobs:
         run: ${{ github.workspace }}/bin/dotfiles
 
       - name: Confirm ansible exists
-        run: ansible -v
+        run: ansible --version
 
   windows-build:
     runs-on: windows-latest
@@ -68,4 +68,4 @@ jobs:
         run: ${{ github.workspace }}\bin\dotfiles.bat
 
       - name: Confirm ansible exists
-        run: ansible -v
+        run: ansible --version
