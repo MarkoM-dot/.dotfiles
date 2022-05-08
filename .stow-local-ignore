@@ -1,7 +1,11 @@
 \.git
 \.github
+\bin
+
 misc
+
 ^/README.*
 ^/LICENSE.*
 ^/.*\.org
+
 *.yml

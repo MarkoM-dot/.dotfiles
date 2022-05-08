@@ -65,7 +65,7 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
 
       - name: Execute dotfiles binary
-        run: ${{ github.workspace }}/bin/dotfiles
+        run: ${{ github.workspace }}\bin\dotfiles
 
       - name: Confirm ansible exists
         run: ansible -v
