@@ -49,11 +49,4 @@ if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
     chmod 600 "$SSH_DIR/authorized_keys"
 fi
 
-# Move into dotfiles and let ansible work it's magic
-if [[ -f "$REPO_DIR/requirements.yml" ]]; then
-    cd "$REPO_DIR"
-
-    ansible-galaxy install -r requirements.yml
-fi
-
-ansible-playbook --diff "$REPO_DIR/main.yml"
+ansible-playbook -i "$REPO_DIR/hosts" "$REPO_DIR/main.yml" --ask-become-pass"
