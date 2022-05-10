@@ -1,4 +1,6 @@
-local lsp_installer = require "nvim-lsp-installer"
+require("nvim-lsp-installer").setup{}
+
+local lspconfig = require("lspconfig")
 
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -20,7 +22,6 @@ local on_attach = function(client, bufnr)
 end
 
 local servers = {
-    'sumneko_lua',
     'rust_analyzer',
     'tsserver',
     'pyright',
@@ -30,36 +31,26 @@ local servers = {
     'html',
 }
 
-for _, name in pairs(servers) do
-    local server_is_found, server = lsp_installer.get_server(name)
-    if server_is_found then
-        if not server:is_installed() then
-            print("Installing" .. name)
-            server:install()
-        end
-    end
-end
-
-lsp_installer.on_server_ready(function(server)
-    local opts = { on_attach = on_attach }
-
-    -- Customize your own language server
-    if server.name == "sumneko_lua" then
- 	    local sumneko_opts = {
-            settings = {
-                Lua = {
-                    diagnostics = { globals = { "vim" }},
-                    workspace = {
-                        library = {
-                            [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                            [vim.fn.stdpath("config") .. "/lua"] = true,
-                        }
+lspconfig.sumneko_lua.setup {
+    on_attach = on_attach,
+    settings = {
+        Lua = {
+            diagnostics = { globals = { "vim" }},
+                workspace = {
+                    library = {
+                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                        [vim.fn.stdpath("config") .. "/lua"] = true,
                     }
                 }
-            }
         }
-        opts = vim.tbl_deep_extend("force", sumneko_opts, opts)
-	end
+    }
 
-    server:setup(opts)
-end)
+}
+
+lspconfig.rust_analyzer.setup { on_attach = on_attach }
+lspconfig.tsserver.setup { on_attach = on_attach }
+lspconfig.pyright.setup { on_attach = on_attach }
+lspconfig.bashls.setup { on_attach = on_attach }
+lspconfig.cssls.setup { on_attach = on_attach }
+lspconfig.eslint.setup { on_attach = on_attach }
+lspconfig.html.setup { on_attach = on_attach }
