@@ -31,4 +31,4 @@ vim.cmd [[
     colorscheme nord
 ]]
 
-set.completeopt = {'menu', 'menuone', 'noselect'}
+set.completeopt = { 'menu', 'menuone', 'noselect' }
