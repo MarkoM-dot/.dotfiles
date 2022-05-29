@@ -1,4 +1,7 @@
-require("nvim-lsp-installer").setup {}
+require("nvim-lsp-installer").setup {
+    ensure_installed = { "rust_analyzer", "sumneko_lua", "pyright", "tsserver", "bashls" },
+    automatic_installation = true
+}
 
 local lspconfig = require("lspconfig")
 
