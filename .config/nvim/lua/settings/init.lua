@@ -30,5 +30,8 @@ vim.cmd [[
 vim.cmd [[
     colorscheme nord
 ]]
+vim.cmd [[
+    set clipboard+=unnamedplus
+]]
 
 set.completeopt = { 'menu', 'menuone', 'noselect' }
