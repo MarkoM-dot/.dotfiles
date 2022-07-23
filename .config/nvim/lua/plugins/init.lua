@@ -29,7 +29,9 @@ return require 'packer'.startup(function(use)
 
     use 'hrsh7th/cmp-vsnip'
     use 'hrsh7th/vim-vsnip'
-
+    use {"akinsho/toggleterm.nvim", tag = 'v2.*', config = function()
+        require("toggleterm").setup()
+    end}
     use 'onsails/lspkind-nvim'
 
     use { 'rust-lang/rust.vim', ft = 'rust' }
