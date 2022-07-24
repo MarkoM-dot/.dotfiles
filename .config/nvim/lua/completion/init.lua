@@ -22,6 +22,7 @@ cmp.setup({
 
     sources = cmp.config.sources {
         { name = 'nvim_lsp' },
+        { name = 'treesitter' },
         { name = 'buffer', keyword_length = 5 }
     },
 
@@ -31,6 +32,7 @@ cmp.setup({
             menu = {
                 buffer = "[buf]",
                 nvim_lsp = "[LSP]",
+                treesitter = "[treesitter]",
                 path = "[path]",
                 gh_issues = "[issues]",
             },
