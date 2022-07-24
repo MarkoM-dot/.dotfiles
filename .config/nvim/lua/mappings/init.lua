@@ -11,6 +11,7 @@ _noremap('n', '<leader>f', ':Telescope find_files<CR>')
 _noremap('n', '<leader>r', ':Telescope live_grep<CR>')
 _noremap('n', '<leader>v', ':Telescope git_commits<CR>')
 _noremap('n', '<leader>c', ':Telescope git_bcommits<CR>')
+_noremap('n', '<leader>K', ':Telescope keymaps<CR>')
 
 _noremap('n', '<leader>d', ':Gitsigns preview_hunk<CR>')
 _noremap('n', '<leader>b', ':Gitsigns blame_line<CR>')
