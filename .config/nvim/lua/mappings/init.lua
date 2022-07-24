@@ -21,4 +21,6 @@ _noremap('n', '<leader>k', ':wincmd k<CR>')
 _noremap('n', '<leader>l', ':wincmd l<CR>')
 _noremap('n', '<leader>n', ':NERDTreeFocus<CR>')
 
+_noremap('n', '<leader>T', ':TSPlaygroundToggle<CR>')
+
 _noremap('i', 'jj', '<Esc>')
