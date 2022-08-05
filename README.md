@@ -32,3 +32,8 @@ stow -D .
 - pyenv
 - poetry
 - cargo
+
+### Tested on:
+- [ ] Ubuntu 22.04
+- [ ] WSL running Ubuntu 22.04
+- [ ] Pop!_OS
