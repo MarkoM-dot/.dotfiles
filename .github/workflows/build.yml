@@ -24,6 +24,9 @@ jobs:
       - name: Confirm ansible exists
         run: ansible --version
 
+      - name: Confirm ripgrep exists
+        run: rg --help
+
   macos-build:
     runs-on: macos-latest
     steps:
