@@ -4,5 +4,7 @@
   become_user: root
   connection: local
   roles:
+    - pre-tasks
     - tools
     - rust
+    - post-tasks
