@@ -1,13 +1,16 @@
-\.git
-\.github
-\bin
-\roles
+/.git
+/.github
+/.gitignore
+
+/bin
+/inventory
+/tests
+/roles
 
 misc
 hosts
 
+^/main.*
 ^/README.*
 ^/LICENSE.*
 ^/.*\.org
-
-*.yml

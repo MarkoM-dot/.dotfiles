@@ -55,4 +55,10 @@ else
   git -C "$REPO_DIR" pull
 fi
 
-ansible-playbook -i "$REPO_DIR/hosts" "$REPO_DIR/main.yml" 
+ansible-playbook "$REPO_DIR/main.yml" -i "$REPO_DIR/inventory" --ask-become-pass
+
+# exec stow
+# stow .
+
+# restart shell with the command below
+# exec $SHELL
