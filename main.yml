@@ -6,5 +6,6 @@
   roles:
     - pre-tasks
     - tools
+    - synth-shell
     - rust
     - post-tasks
