@@ -8,6 +8,8 @@ This is my personal configuration and you may run the binary at your own risk.
 
 ### Ansible
 
+Ansible is responsible for downloading, updating, and maintaining my chosen configuration files.
+
 ### Stow
 
 This repository uses stow to create symbolic links for all relevant configuration files or folders.
@@ -20,10 +22,12 @@ stow -D .
 ### Project Layout
 
 
-    ├─ bin/             build scripts
     ├─ .config/         configuration settings
-    └─ .github/         build automation
-
+    ├─ .github/         build automation
+    ├─ bin/             build scripts
+    ├─ roles/           tasks and related artifacts used by ansible-playbook
+    └─ tests/           test suite
+    
 ### Tools
 
 - bash
