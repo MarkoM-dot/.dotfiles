@@ -20,7 +20,7 @@ cmp.setup({
         },
     }),
 
-    sources = cmp.config.sources {
+    sources = {
         { name = 'nvim_lsp' },
         { name = 'treesitter' },
         { name = 'buffer', keyword_length = 5 }
@@ -28,13 +28,40 @@ cmp.setup({
 
     formatting = {
         format = lspkind.cmp_format {
-            with_text = true,
+            mode = 'symbol_text',
+            symbol_map = {
+                Text = "☰",
+                Method = "ო",
+                Function = "𝑓",
+                Constructor = "⚒",
+                Field = "⛳",
+                Variable = "⍺",
+                Class = "♛",
+                Interface = "⚉",
+                Module = "☣",
+                Property = "ϕ",
+                Unit = "⃝",
+                Value = "¢",
+                Enum = "∑",
+                Keyword = "⚛",
+                Snippet = "✄",
+                Color = "🎨",
+                File = "📄",
+                Reference = "ℝ",
+                Folder = "🗃",
+                EnumMember = "∈",
+                Constant = "ℎ",
+                Struct = "♻",
+                Event = "",
+                Operator = "⇒",
+                TypeParameter = "┳"
+            },
             menu = {
-                buffer = "[buf]",
+                buffer = "[Buf]",
                 nvim_lsp = "[LSP]",
-                treesitter = "[treesitter]",
-                path = "[path]",
-                gh_issues = "[issues]",
+                treesitter = "[Tree]",
+                path = "[Path]",
+                gh_issues = "[gh_issues]",
             },
         },
     },
