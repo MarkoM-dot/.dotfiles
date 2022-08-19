@@ -1,7 +1,6 @@
 local set = vim.opt
 
 set.termguicolors = true
-set.bg = 'dark'
 set.syntax = 'enable'
 
 set.expandtab = true
