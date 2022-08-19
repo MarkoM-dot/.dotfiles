@@ -1,5 +1,5 @@
 require("nvim-lsp-installer").setup {
-    ensure_installed = { "rust_analyzer", "sumneko_lua", "pyright", "tsserver", "bashls", "yamlls" },
+    ensure_installed = { "hls", "rust_analyzer", "sumneko_lua", "pyright", "tsserver", "bashls", "yamlls" },
     automatic_installation = true
 }
 
@@ -50,3 +50,4 @@ lspconfig.cssls.setup { on_attach = on_attach }
 lspconfig.eslint.setup { on_attach = on_attach }
 lspconfig.html.setup { on_attach = on_attach }
 lspconfig.yamlls.setup { on_attach = on_attach }
+lspconfig.hls.setup { on_attach = on_attach }
