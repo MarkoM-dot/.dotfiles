@@ -6,6 +6,8 @@ require("nvim-lsp-installer").setup {
 
 local lspconfig = require("lspconfig")
 
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
@@ -29,12 +31,14 @@ end
 
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup {
-        on_attach = on_attach
+        on_attach = on_attach,
+        capabilities = capabilities,
     }
 end
 
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     settings = {
         Lua = {
             diagnostics = { globals = { "vim" } },
@@ -45,6 +49,6 @@ lspconfig.sumneko_lua.setup {
                 }
             }
         }
-    }
+    },
 
 }
