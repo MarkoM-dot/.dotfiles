@@ -1,6 +1,7 @@
+local servers = { "hls", "rust_analyzer", "sumneko_lua", "pyright", "tsserver", "bashls", "yamlls" }
+
 require("nvim-lsp-installer").setup {
-    ensure_installed = { "hls", "rust_analyzer", "sumneko_lua", "pyright", "tsserver", "bashls", "yamlls" },
-    automatic_installation = true
+    ensure_installed = servers,
 }
 
 local lspconfig = require("lspconfig")
@@ -26,6 +27,12 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>dl', '<cmd>Telescope diagnostics<CR>', opts)
 end
 
+for _, lsp in ipairs(servers) do
+    lspconfig[lsp].setup {
+        on_attach = on_attach
+    }
+end
+
 lspconfig.sumneko_lua.setup {
     on_attach = on_attach,
     settings = {
@@ -41,13 +48,3 @@ lspconfig.sumneko_lua.setup {
     }
 
 }
-
-lspconfig.rust_analyzer.setup { on_attach = on_attach }
-lspconfig.tsserver.setup { on_attach = on_attach }
-lspconfig.pyright.setup { on_attach = on_attach }
-lspconfig.bashls.setup { on_attach = on_attach }
-lspconfig.cssls.setup { on_attach = on_attach }
-lspconfig.eslint.setup { on_attach = on_attach }
-lspconfig.html.setup { on_attach = on_attach }
-lspconfig.yamlls.setup { on_attach = on_attach }
-lspconfig.hls.setup { on_attach = on_attach }
