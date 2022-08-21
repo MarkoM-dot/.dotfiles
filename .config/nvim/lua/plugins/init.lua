@@ -6,11 +6,11 @@ return require 'packer'.startup(function(use)
     use 'preservim/nerdtree'
     use 'nvim-telescope/telescope.nvim'
 
-    use {
-        'neovim/nvim-lspconfig',
-        'williamboman/nvim-lsp-installer'
-    }
-
+    
+    use "neovim/nvim-lspconfig"
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
+    
     use {
         'nvim-treesitter/nvim-treesitter',
         run = ':TSUpdate'
