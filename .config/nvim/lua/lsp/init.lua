@@ -1,10 +1,9 @@
-local servers = { "hls", "rust_analyzer", "sumneko_lua", "pyright", "tsserver", "bashls", "yamlls" }
+local servers = { "hls", "rust_analyzer", "pyright", "tsserver", "bashls", "yamlls" }
 
-require("nvim-lsp-installer").setup {
-    ensure_installed = servers,
-}
-
-local lspconfig = require("lspconfig")
+require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = servers
+})
 
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
@@ -29,16 +28,11 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>dl', '<cmd>Telescope diagnostics<CR>', opts)
 end
 
-for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup {
-        on_attach = on_attach,
-        capabilities = capabilities,
-    }
-end
+local lspconfig = require("lspconfig")
 
 lspconfig.sumneko_lua.setup {
-    on_attach = on_attach,
     capabilities = capabilities,
+    on_attach = on_attach,
     settings = {
         Lua = {
             diagnostics = { globals = { "vim" } },
@@ -49,6 +43,13 @@ lspconfig.sumneko_lua.setup {
                 }
             }
         }
-    },
-
+    }
 }
+
+for _, lsp in ipairs(servers) do
+   lspconfig[lsp].setup {
+       on_attach = on_attach,
+        capabilities = capabilities,
+    }
+end
+
