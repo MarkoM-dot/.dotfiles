@@ -1,9 +1,11 @@
-require("nvim-lsp-installer").setup {
-    ensure_installed = { "rust_analyzer", "sumneko_lua", "pyright", "tsserver", "bashls", "yamlls" },
-    automatic_installation = true
-}
+local servers = { "hls", "rust_analyzer", "pyright", "tsserver", "bashls", "yamlls", "cssls", "html" }
 
-local lspconfig = require("lspconfig")
+require("mason").setup()
+require("mason-lspconfig").setup({
+    ensure_installed = servers
+})
+
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 local on_attach = function(client, bufnr)
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
@@ -26,7 +28,10 @@ local on_attach = function(client, bufnr)
     buf_set_keymap('n', '<leader>dl', '<cmd>Telescope diagnostics<CR>', opts)
 end
 
+local lspconfig = require("lspconfig")
+
 lspconfig.sumneko_lua.setup {
+    capabilities = capabilities,
     on_attach = on_attach,
     settings = {
         Lua = {
@@ -39,14 +44,11 @@ lspconfig.sumneko_lua.setup {
             }
         }
     }
-
 }
 
-lspconfig.rust_analyzer.setup { on_attach = on_attach }
-lspconfig.tsserver.setup { on_attach = on_attach }
-lspconfig.pyright.setup { on_attach = on_attach }
-lspconfig.bashls.setup { on_attach = on_attach }
-lspconfig.cssls.setup { on_attach = on_attach }
-lspconfig.eslint.setup { on_attach = on_attach }
-lspconfig.html.setup { on_attach = on_attach }
-lspconfig.yamlls.setup { on_attach = on_attach }
+for _, lsp in ipairs(servers) do
+    lspconfig[lsp].setup {
+        on_attach = on_attach,
+        capabilities = capabilities,
+    }
+end
