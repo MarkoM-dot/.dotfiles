@@ -1,7 +1,6 @@
 local set = vim.opt
 
 set.termguicolors = true
-set.bg = 'dark'
 set.syntax = 'enable'
 
 set.expandtab = true
@@ -16,7 +15,7 @@ set.termguicolors = true
 
 set.errorbells = false
 set.encoding = 'utf-8'
-set.wrap = false
+set.wrap = true
 set.ignorecase = true
 set.smartcase = true
 set.incsearch = true

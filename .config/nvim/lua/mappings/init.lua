@@ -8,6 +8,7 @@ end
 _noremap('n', '<leader><leader>', '<c-^>') --switch to previous buffer
 
 _noremap('n', '<leader>f', ':Telescope find_files<CR>')
+_noremap('n', '<leader>z', ':Telescope oldfiles<CR>')
 _noremap('n', '<leader>r', ':Telescope live_grep<CR>')
 _noremap('n', '<leader>v', ':Telescope git_commits<CR>')
 _noremap('n', '<leader>c', ':Telescope git_bcommits<CR>')

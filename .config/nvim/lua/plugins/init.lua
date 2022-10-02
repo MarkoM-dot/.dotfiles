@@ -6,10 +6,10 @@ return require 'packer'.startup(function(use)
     use 'preservim/nerdtree'
     use 'nvim-telescope/telescope.nvim'
 
-    use {
-        'neovim/nvim-lspconfig',
-        'williamboman/nvim-lsp-installer'
-    }
+
+    use "neovim/nvim-lspconfig"
+    use "williamboman/mason.nvim"
+    use "williamboman/mason-lspconfig.nvim"
 
     use {
         'nvim-treesitter/nvim-treesitter',
@@ -30,9 +30,9 @@ return require 'packer'.startup(function(use)
 
     use 'hrsh7th/cmp-vsnip'
     use 'hrsh7th/vim-vsnip'
-    use {"akinsho/toggleterm.nvim", tag = 'v2.*', config = function()
+    use { "akinsho/toggleterm.nvim", tag = 'v2.*', config = function()
         require("toggleterm").setup()
-    end}
+    end }
     use 'onsails/lspkind-nvim'
 
     use { 'rust-lang/rust.vim', ft = 'rust' }
