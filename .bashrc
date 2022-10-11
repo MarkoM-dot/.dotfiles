@@ -135,3 +135,9 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 [ -f "/home/marko/.ghcup/env" ] && source "/home/marko/.ghcup/env" # ghcup-env
+
+##-----------------------------------------------------
+## synth-shell-prompt.sh
+if [ -f /home/markom-dot/.config/synth-shell/synth-shell-prompt.sh ] && [ -n "$( echo $- | grep i )" ]; then
+	source /home/markom-dot/.config/synth-shell/synth-shell-prompt.sh
+fi
