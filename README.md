@@ -38,6 +38,6 @@ stow -D .
 - cargo
 
 ### Tested on:
-- [ ] Ubuntu 22.04
-- [ ] WSL running Ubuntu 22.04
+- [x] Ubuntu 22.04
+- [x] WSL running Ubuntu 22.04
 - [ ] Pop!_OS
