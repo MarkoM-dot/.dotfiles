@@ -4,7 +4,7 @@
 ![Last commit](https://img.shields.io/github/last-commit/MarkoM-dot/.dotfiles?color=orange)
 
 ### Disclaimer
-This is my personal configuration and you may run the binary at your own risk.
+This is my personal configuration and you may run the installation script at your own risk.
 
 ### Ansible
 
