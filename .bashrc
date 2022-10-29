@@ -141,3 +141,9 @@ export NVM_DIR="$HOME/.nvm"
 if [ -f /home/markom-dot/.config/synth-shell/synth-shell-prompt.sh ] && [ -n "$( echo $- | grep i )" ]; then
 	source /home/markom-dot/.config/synth-shell/synth-shell-prompt.sh
 fi
+
+##-----------------------------------------------------
+## synth-shell-prompt.sh
+if [ -f /home/marko/.config/synth-shell/synth-shell-prompt.sh ] && [ -n "$( echo $- | grep i )" ]; then
+	source /home/marko/.config/synth-shell/synth-shell-prompt.sh
+fi
