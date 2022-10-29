@@ -1,4 +1,14 @@
-local servers = { "hls", "rust_analyzer", "pyright", "tsserver", "bashls", "yamlls", "cssls", "html" }
+local servers = {
+    "clangd",
+    "hls",
+    "rust_analyzer",
+    "pyright",
+    "tsserver",
+    "bashls",
+    "yamlls",
+    "cssls",
+    "html"
+}
 
 require("mason").setup()
 require("mason-lspconfig").setup({
