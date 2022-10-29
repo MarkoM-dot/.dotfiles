@@ -29,4 +29,4 @@ vim.cmd [[
     filetype plugin indent on
 ]]
 
-set.completeopt = {"menu", "menuone", "noselect"}
+set.completeopt = { "menu", "menuone", "noselect" }
