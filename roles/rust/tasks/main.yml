@@ -3,18 +3,18 @@
   register: cargo_exists 
   ignore_errors: yes
   
-    #- name: Download rustup
-    #  when: cargo_exists is failed
-    #  get_url:
-    #    url: https://sh.rustup.rs
-    #    dest: /tmp/sh.rustup.sh
-    #    mode: '0755'
-    #    force: 'yes'
-    #  tags:
-    #    - rust
+- name: Download rustup
+  when: cargo_exists is failed
+  get_url:
+    url: https://sh.rustup.rs
+    dest: /tmp/sh.rustup.sh
+    mode: '0755'
+    force: 'yes'
+  tags:
+    - rust
 
-    #- name: Install rust and cargo
-    #  when: cargo_exists is failed
-    #  shell: /tmp/sh.rustup.rs -y
-    #  tags:
-    #    - rust
+- name: Install rust and cargo
+  when: cargo_exists is failed
+  shell: /tmp/sh.rustup.sh -y
+  tags:
+    - rust

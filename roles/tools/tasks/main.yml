@@ -1,0 +1,10 @@
+- name: Check if curl is installed
+  shell: curl --version
+  register: curl_exists 
+  ignore_errors: yes
+ 
+- name: Download curl
+  when: curl_exists is failed
+  ansible.builtin.apt:
+    name: curl
+    state: latest
