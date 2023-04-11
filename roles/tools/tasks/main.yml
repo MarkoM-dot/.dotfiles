@@ -8,3 +8,8 @@
   ansible.builtin.apt:
     name: curl
     state: latest
+
+- name: Download build-essential
+  ansible.builtin.apt:
+    name: build-essential
+    state: latest
