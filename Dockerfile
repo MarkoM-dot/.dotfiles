@@ -6,4 +6,4 @@ RUN apt update && apt install sudo
 
 COPY . .
 
-RUN ./bin/dotfiles
+RUN ./bin/dotfiles | tee /tmp/dotfiles_log
