@@ -9,6 +9,7 @@
 
 misc
 hosts
+Dockerfile
 
 ^/main.*
 ^/README.*
