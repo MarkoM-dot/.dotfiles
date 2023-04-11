@@ -1,7 +1,9 @@
 FROM ubuntu:jammy
 
-WORKDIR /home/dev
-
-COPY /bin ./bin
+WORKDIR $HOME/.dotfiles
 
 RUN apt update && apt install sudo
+
+COPY . .
+
+RUN ./bin/dotfiles

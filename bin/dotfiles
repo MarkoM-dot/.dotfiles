@@ -10,15 +10,20 @@ case $OS in
 
     'Linux')
         if ! [ -x "$(command -v ansible)" ]; then
+            printf "\n\nInstalling ansible...\n\n"
             sudo apt update -y
+            sudo apt install software-properties-common -y
+            sudo add-apt-repository --yes --update ppa:ansible/ansible
             sudo apt install -y ansible
         fi
 
         if ! [ -x "$(command -v stow)" ]; then
+            printf "\n\nInstalling stow...\n\n"
             sudo apt install -y stow
         fi
 
         if ! [ -x "$(command -v git)" ]; then
+            printf "\n\nInstalling git\n\n"
             sudo apt install -y git 
         fi;;
 
@@ -40,12 +45,14 @@ case $OS in
             brew install git 
         fi;;
     *)
-        echo "Executable not configured for $OS"
+        printf "Executable not configured for $OS"
         exit 1;;
 esac
 
 # generate an ssh key if nonexistent
 if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
+    printf "\n\nGenerating ssh keys...\n\n"
+
     mkdir -p "$SSH_DIR"
 
     chmod 700 "$SSH_DIR"
@@ -57,17 +64,11 @@ if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
     chmod 600 "$SSH_DIR/authorized_keys"
 fi
 
-# Clone repository
-if ! [[ -d "$REPO_DIR" ]]; then
-  git clone "https://github.com/MarkoM-dot/.dotfiles.git" "$REPO_DIR"
-else
-  git -C "$REPO_DIR" pull
-fi
-
+printf "\n\nRun Ansible playbook...\n\n"
 ansible-playbook "$REPO_DIR/main.yml" -i "$REPO_DIR/inventory" --ask-become-pass
 
-# exec stow
-# stow .
+printf "\n\nExecute Stow...\n\n"
+stow .
 
-# restart shell with the command below
-# exec $SHELL
+printf "\n\nRestart Shell\n\n"
+exec $SHELL
