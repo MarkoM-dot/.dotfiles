@@ -1,4 +1,0 @@
-- name: Install tools
-  ansible.builtin.apt:
-    pkg:
-      - ripgrep
