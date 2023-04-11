@@ -23,16 +23,13 @@ stow -D .
 
 
     ├─ .config/         configuration settings
-    ├─ .github/         build automation
     ├─ bin/             build scripts
     ├─ roles/           tasks and related artifacts used by ansible-playbook
-    └─ tests/           test suite
     
 ### Tools
 
 - bash
 - neovim
-- synth-shell
 - pyenv
 - poetry
 - cargo
