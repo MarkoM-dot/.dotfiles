@@ -1,4 +1,0 @@
-- name: Install fonts-powerline before synth-shell
-  ansible.builtin.apt:
-    pkg:
-      - fonts-powerline
