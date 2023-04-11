@@ -11,3 +11,5 @@ map.set("n", "<leader>l", ":wincmd l<CR>")
 map.set("n", "<leader>n", ":Ex<CR>")
 
 map.set("t", "<Esc>", [[<C-\><C-n>]])
+
+vim.keymap.set("n", "<leader>T", ":InspectTree<CR>")
