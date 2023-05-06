@@ -5,11 +5,22 @@
  
 - name: Download curl
   when: curl_exists is failed
-  ansible.builtin.apt:
+  ansible.builtin.package:
     name: curl
     state: latest
 
+- name: Check apt availability
+  ansible.builtin.command: apt --version
+  register: apt_available
+  ignore_errors: yes
+
 - name: Download build-essential
-  ansible.builtin.apt:
+  when: apt_available.rc == 0
+  ansible.builtin.package:
     name: build-essential
+    state: latest
+
+- name: Download cmake
+  ansible.builtin.package:
+    name: cmake
     state: latest
