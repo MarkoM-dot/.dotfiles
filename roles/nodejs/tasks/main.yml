@@ -1,0 +1,12 @@
+- name: Check if nodejs is installed
+  shell: node --version
+  register: node_exists 
+  ignore_errors: yes
+  
+- name: Download nodejs
+  when: node_exists is failed
+  ansible.builtin.package:
+    name: nodejs
+    state: latest
+
+

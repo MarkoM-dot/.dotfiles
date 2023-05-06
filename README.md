@@ -29,12 +29,5 @@ stow -D .
 
 - bash
 - neovim
-- pyenv
-- poetry
 - cargo
-
-### Tested on:
-- [x] Ubuntu 22.04
-- [x] WSL running Ubuntu 22.04
-- [x] Pop!_OS
-- [ ] Kali
+- node

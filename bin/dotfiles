@@ -69,7 +69,7 @@ case $OS in
                 break
             fi
             echo "Could not find Linux distribution..."
-            exit
+            exit 1
         done;;
 
     'Darwin')
