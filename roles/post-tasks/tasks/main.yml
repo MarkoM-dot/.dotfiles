@@ -1,7 +1,7 @@
 - name: Remove obsolete packages
-  ansible.builtin.apt:
+  ansible.builtin.package:
     autoremove: yes
 
 - name: So fresh and so clean clean
-  ansible.builtin.apt:
+  ansible.builtin.package:
     autoclean: yes
