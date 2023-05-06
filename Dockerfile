@@ -1,8 +1,8 @@
-FROM ubuntu:jammy
+FROM fedora:latest
 
 WORKDIR $HOME/.dotfiles
 
-RUN apt update && apt install sudo
+RUN dnf update -y
 
 COPY . .
 
