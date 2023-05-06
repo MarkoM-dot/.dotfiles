@@ -7,4 +7,6 @@
     - pre-tasks
     - tools
     - rust
+    - nodejs
+    - neovim
     - post-tasks

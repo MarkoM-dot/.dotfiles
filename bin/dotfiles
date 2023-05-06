@@ -1,32 +1,76 @@
 #!/bin/bash
-set -e
+set -o errexit
 
 EXE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 REPO_DIR=$(dirname "$EXE_DIR")
 SSH_DIR="$HOME/.ssh"
 
+fedora() {
+    if ! [ -x "$(command -v ansible)" ]; then
+        printf "\n\nInstalling ansible...\n\n"
+        sudo dnf update -y
+        sudo dnf install ansible -y
+    fi
+
+    if ! [ -x "$(command -v stow)" ]; then
+        printf "\n\nInstalling stow...\n\n"
+        sudo dnf install -y stow
+    fi
+
+    if ! [ -x "$(command -v git)" ]; then
+        printf "\n\nInstalling git\n\n"
+        sudo dnf install -y git 
+    fi
+}
+
+debian() {
+    if ! [ -x "$(command -v ansible)" ]; then
+        printf "\n\nInstalling ansible...\n\n"
+        sudo apt update -y
+        sudo apt install software-properties-common -y
+        sudo add-apt-repository --yes --update ppa:ansible/ansible
+        sudo apt install -y ansible
+    fi
+
+    if ! [ -x "$(command -v stow)" ]; then
+        printf "\n\nInstalling stow...\n\n"
+        sudo apt install -y stow
+    fi
+
+    if ! [ -x "$(command -v git)" ]; then
+        printf "\n\nInstalling git\n\n"
+        sudo apt install -y git 
+    fi
+}
+
+alpine() {
+    echo "Alpine"
+}
+
+arch() {
+    echo "Arch btw"
+}
+
+
+declare -A osInfo
+
+osInfo["fedora-release"]=fedora 
+osInfo["debian_version"]=debian
+osInfo["alpine-release"]=alpine
+osInfo["arch-release"]=arch
+
 OS="`uname`"
 case $OS in
-
     'Linux')
-        if ! [ -x "$(command -v ansible)" ]; then
-            printf "\n\nInstalling ansible...\n\n"
-            sudo apt update -y
-            sudo apt install software-properties-common -y
-            sudo add-apt-repository --yes --update ppa:ansible/ansible
-            sudo apt install -y ansible
-        fi
-
-        if ! [ -x "$(command -v stow)" ]; then
-            printf "\n\nInstalling stow...\n\n"
-            sudo apt install -y stow
-        fi
-
-        if ! [ -x "$(command -v git)" ]; then
-            printf "\n\nInstalling git\n\n"
-            sudo apt install -y git 
-        fi;;
-
+        for distro in ${!osInfo[@]}; do
+            if [[ -f "/etc/"$distro ]]; then
+                echo $distro
+                ${osInfo[$distro]}
+                break
+            fi
+            echo "Could not find Linux distribution..."
+            exit 1
+        done;;
 
     'Darwin')
         if ! [ -x "$(command -v brew)" ]; then
@@ -45,7 +89,7 @@ case $OS in
             brew install git 
         fi;;
     *)
-        printf "Executable not configured for $OS"
+        printf "Program not configured for $OS"
         exit 1;;
 esac
 
