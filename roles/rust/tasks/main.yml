@@ -17,6 +17,7 @@
       - ripgrep
       - fd-find
       - starship
+      - stylua
     state: latest
 
     #- name: Download rustup
