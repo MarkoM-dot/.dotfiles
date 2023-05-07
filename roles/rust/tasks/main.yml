@@ -14,9 +14,9 @@
 # Community cargo installs .cargo in /root directory
 # Modifications are made to change this inaccuracy
 
-- name: Ensure markom-dot exists
+- name: Get Ansible user name
   ansible.builtin.user:
-    name: markom-dot
+    name: "{{ ansible_user }}"
     state: present
   register: user_info
 
@@ -28,7 +28,7 @@
   ansible.builtin.file:
     path: "{{ cargo_home }}"
     state: directory
-    owner: markom-dot
+    owner: "{{ ansible_user }}"
     group: "{{ user_info.group }}"
     mode: "0755"
 
@@ -42,7 +42,7 @@
     state: latest
     path: "{{ user_info.home }}/.cargo"
   become: true
-  become_user: markom-dot
+  become_user: "{{ ansible_user }}"
   environment:
     CARGO_HOME: "{{ user_info.home }}/.cargo"
 
