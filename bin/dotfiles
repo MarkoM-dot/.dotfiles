@@ -110,6 +110,10 @@ if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
     chmod 600 "$SSH_DIR/authorized_keys"
 fi
 
+printf "\n\nPulling most recent dotfiles\n\n"
+cd $REPO_DIR
+git pull
+
 printf "\n\nRun Ansible playbook...\n\n"
 ansible-playbook "$REPO_DIR/main.yml" -i "$REPO_DIR/inventory" --ask-become-pass --extra-vars "current_user=$USER current_group=$USER_GROUP"
 
