@@ -14,10 +14,6 @@
 # Community cargo installs .cargo in /root directory
 # Modifications are made to change this inaccuracy
 
-- name: Show me the current user from id
-  ansible.builtin.debug:
-    msg: "{{ current_user }}"
-
 - name: Set CARGO_HOME
   set_fact:
     cargo_home: "/home/{{ current_user }}/.cargo"
