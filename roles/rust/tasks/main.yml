@@ -11,6 +11,27 @@
       - cargo
     state: latest
 
+# Community cargo installs .cargo in /root directory
+# Modifications are made to change this inaccuracy
+
+- name: Ensure markom-dot exists
+  ansible.builtin.user:
+    name: markom-dot
+    state: present
+  register: user_info
+
+- name: Set CARGO_HOME
+  set_fact:
+    cargo_home: "{{ user_info.home }}/.cargo"
+
+- name: Create cargo directory
+  ansible.builtin.file:
+    path: "{{ cargo_home }}"
+    state: directory
+    owner: markom-dot
+    group: "{{ user_info.group }}"
+    mode: "0755"
+
 - name: Rusty stuff
   community.general.cargo:
     name:
@@ -19,6 +40,12 @@
       - starship
       - stylua
     state: latest
+    path: "{{ user_info.home }}/.cargo"
+  become: true
+  become_user: markom-dot
+  environment:
+    CARGO_HOME: "{{ user_info.home }}/.cargo"
+
 
     #- name: Download rustup
     #  when: cargo_exists is failed
