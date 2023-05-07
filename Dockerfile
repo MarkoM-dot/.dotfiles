@@ -7,6 +7,6 @@ USER markom-dot
 
 WORKDIR /home/markom-dot/.dotfiles
 
-COPY . .
+COPY --chown=markom-dot:markom-dot . .
 
 RUN ./bin/dotfiles | tee /tmp/dotfiles_log
