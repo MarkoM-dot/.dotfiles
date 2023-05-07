@@ -14,22 +14,20 @@
 # Community cargo installs .cargo in /root directory
 # Modifications are made to change this inaccuracy
 
-- name: Get Ansible user name
-  ansible.builtin.user:
-    name: "{{ ansible_user }}"
-    state: present
-  register: user_info
+- name: Show me the current user from id
+  ansible.builtin.debug:
+    msg: "{{ current_user }}"
 
 - name: Set CARGO_HOME
   set_fact:
-    cargo_home: "{{ user_info.home }}/.cargo"
+    cargo_home: "/home/{{ current_user }}/.cargo"
 
 - name: Create cargo directory
   ansible.builtin.file:
     path: "{{ cargo_home }}"
     state: directory
-    owner: "{{ ansible_user }}"
-    group: "{{ user_info.group }}"
+    owner: "{{ current_user }}"
+    group: "{{ current_group }}"
     mode: "0755"
 
 - name: Rusty stuff
@@ -40,11 +38,11 @@
       - starship
       - stylua
     state: latest
-    path: "{{ user_info.home }}/.cargo"
+    path: "{{ cargo_home }}"
   become: true
-  become_user: "{{ ansible_user }}"
+  become_user: "{{ current_user }}"
   environment:
-    CARGO_HOME: "{{ user_info.home }}/.cargo"
+    CARGO_HOME: "{{ cargo_home }}"
 
 
     #- name: Download rustup
