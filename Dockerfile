@@ -1,6 +1,11 @@
 FROM fedora:latest
 
-WORKDIR $HOME/.dotfiles
+RUN useradd markom-dot && \
+    usermod -aG wheel markom-dot && \
+    echo 'markom-dot ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+USER markom-dot
+
+WORKDIR /home/markom-dot/.dotfiles
 
 COPY . .
 
