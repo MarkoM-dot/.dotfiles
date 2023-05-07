@@ -1,8 +1,8 @@
 require("nvim-treesitter.configs").setup({
 	ensure_installed = {
 		"c",
-		"help",
 		"vim",
+        "vimdoc",
 		"lua",
 		"rust",
 		"typescript",
@@ -13,6 +13,10 @@ require("nvim-treesitter.configs").setup({
 		"javascript",
 		"query",
 		"sql",
+        "dockerfile",
+        "markdown",
+        "markdown_inline",
+        "perl",
 	},
 	sync_install = false,
 	highlight = {
