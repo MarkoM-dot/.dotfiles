@@ -65,7 +65,7 @@ case $OS in
     'Linux')
         for distro in ${!osInfo[@]}; do
             if [[ -f "/etc/"$distro ]]; then
-                echo $distro
+                printf "\n\nIdentified: $distro\n\n"
                 ${osInfo[$distro]}
                 break
             fi
