@@ -6,7 +6,7 @@
 This is my personal configuration and you may run the installation script at your own risk.
 
 Docker is used to simulate the automated configuration on a new machine for testing 
-purposes. Unfortunately, installing rust tools is slow but are required by
+purposes. Unfortunately, installing rust tools is slow but required by
 neovim.
 
 ### Ansible
