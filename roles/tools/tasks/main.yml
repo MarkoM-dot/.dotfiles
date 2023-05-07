@@ -1,14 +1,3 @@
-- name: Check if curl is installed
-  shell: curl --version
-  register: curl_exists 
-  ignore_errors: yes
- 
-- name: Download curl
-  when: curl_exists is failed
-  ansible.builtin.package:
-    name: curl
-    state: latest
-
 - name: Check apt availability
   ansible.builtin.command: apt --version
   register: apt_available
@@ -20,17 +9,12 @@
     name: build-essential
     state: latest
 
-- name: Download cmake
+- name: Download familiar tools
   ansible.builtin.package:
-    name: cmake
-    state: latest
-
-- name: Download gcc-c++
-  ansible.builtin.package:
-    name: gcc-c++
-    state: latest
-
-- name: Zippity zip unzip
-  ansible.builtin.package:
-    name: unzip
+    name: 
+      - cmake
+      - gcc-c++
+      - unzip
+      - wget
+      - curl
     state: latest
