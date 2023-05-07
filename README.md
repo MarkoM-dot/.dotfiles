@@ -5,6 +5,8 @@
 ### Disclaimer
 This is my personal configuration and you may run the installation script at your own risk.
 
+Docker is used to simulate the automated configuration on a new machine for testing purposes. 
+
 ### Ansible
 
 Ansible is responsible for downloading, updating, and maintaining my chosen configuration files.
