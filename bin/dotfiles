@@ -112,8 +112,10 @@ fi
 printf "\n\nRun Ansible playbook...\n\n"
 ansible-playbook "$REPO_DIR/main.yml" -i "$REPO_DIR/inventory" --ask-become-pass
 
+printf "\n\nFinished Ansible playbook!\n\n"
+
 printf "\n\nExecute Stow...\n\n"
-stow . -t ~
+stow . -d $REPO_DIR -t ~
 
 printf "\n\nRestart Shell\n\n"
 exec $SHELL
