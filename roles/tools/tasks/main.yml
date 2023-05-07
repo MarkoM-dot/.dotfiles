@@ -29,3 +29,8 @@
   ansible.builtin.package:
     name: gcc-c++
     state: latest
+
+- name: Zippity zip unzip
+  ansible.builtin.package:
+    name: unzip
+    state: latest
