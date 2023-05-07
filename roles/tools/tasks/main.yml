@@ -14,7 +14,9 @@
     name: 
       - cmake
       - gcc-c++
+      - clang
       - unzip
       - wget
       - curl
+      - python3-pip
     state: latest
