@@ -9,14 +9,21 @@ Docker is used to simulate the automated configuration on a new machine for test
 purposes. Unfortunately, installing rust tools is slow but required by
 neovim.
 
-### Ansible
+## What is this place?
+
+The goal of this repository is to automate the configuration of my machines with the following 
+simple command `dotfiles`. On a fresh install, the repo should be cloned and the script in 
+the bin folder can be executed to configure the environment. Rerunning the script
+again will update the configuration keeping packages on their latest release. Fedora is the
+preferred Linux distribution and more options will be added if I feel the need to distro-hop.
+Furthermore, adjustments to configurations can now happen in a single repository as 
+opposed to configuring each individual machine.
 
 Ansible is responsible for downloading, updating, and maintaining my chosen configuration files.
 
-### Stow
-
 This repository uses stow to create symbolic links for all relevant configuration files or folders.
-If you wish to remove the symbolic links created by stow, execute the following command in your ~/.dotfiles dir:
+If you wish to remove the symbolic links created by stow, execute the following command in your ~/.dotfiles 
+directory:
 
 ```bash
 stow -D .
