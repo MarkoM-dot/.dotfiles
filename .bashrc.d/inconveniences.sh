@@ -4,6 +4,6 @@
 # so here is a fix that sets it to public might require sudo
 
 if findmnt -o PROPAGATION / | grep -q "private"; then
-    echo "You've got an inconvenience..."
+    echo "You've got an inconvenience on line ${LINENO} in file ${BASH_SOURCE[0]}"
     # mount --make--rshared /
 fi
