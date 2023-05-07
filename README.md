@@ -2,7 +2,7 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/MarkoM-dot/.dotfiles)
 ![Last commit](https://img.shields.io/github/last-commit/MarkoM-dot/.dotfiles?color=orange)
 
-### Disclaimer
+## Disclaimer!
 This is my personal configuration and you may run the installation script at your own risk.
 
 Docker is used to simulate the automated configuration on a new machine for testing 
@@ -36,9 +36,6 @@ stow -D .
     ├─ bin/             build scripts
     ├─ roles/           tasks and related artifacts used by ansible-playbook
     
-### Tools
+## What now?
 
-- bash
-- neovim
-- cargo
-- node
+The script works on Fedora! If another distro tickles my fancy I'll make the necessary adjustments.
