@@ -5,6 +5,8 @@ set -o nounset
 EXE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 REPO_DIR=$(dirname "$EXE_DIR")
 SSH_DIR="$HOME/.ssh"
+USER=$( whoami )
+USER_GROUP=$(id -gn $USER )
 
 fedora() {
     if ! [ -x "$(command -v ansible)" ]; then
@@ -110,7 +112,7 @@ if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
 fi
 
 printf "\n\nRun Ansible playbook...\n\n"
-ansible-playbook "$REPO_DIR/main.yml" -i "$REPO_DIR/inventory" --ask-become-pass
+ansible-playbook "$REPO_DIR/main.yml" -i "$REPO_DIR/inventory" --ask-become-pass --extra-vars "current_user=$USER current_group=$USER_GROUP"
 
 printf "\n\nFinished Ansible playbook!\n\n"
 
