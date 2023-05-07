@@ -24,3 +24,8 @@
   ansible.builtin.package:
     name: cmake
     state: latest
+
+- name: Download gcc-c++
+  ansible.builtin.package:
+    name: gcc-c++
+    state: latest
