@@ -1,6 +1,5 @@
 #!/bin/bash
 set -o errexit
-set -o nounset
 
 EXE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 REPO_DIR=$(dirname "$EXE_DIR")
@@ -119,5 +118,5 @@ printf "\n\nFinished Ansible playbook!\n\n"
 printf "\n\nExecute Stow...\n\n"
 stow . -d $REPO_DIR -t ~
 
-printf "\n\nRestart Shell\n\n"
-exec $SHELL
+printf "\n\nSource bashrc\n\n"
+. ~/.bashrc
