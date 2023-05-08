@@ -9,4 +9,5 @@ WORKDIR /home/markom-dot/.dotfiles
 
 COPY --chown=markom-dot:markom-dot . .
 
+ENV TEST=TEST
 RUN ./bin/dotfiles | tee /tmp/dotfiles_log
