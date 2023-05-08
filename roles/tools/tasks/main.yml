@@ -28,4 +28,5 @@
       - stow
       - git
       - gh
+      - libicu
     state: latest
