@@ -11,6 +11,7 @@ local servers = {
 	"sqlls",
 	"marksman",
 	"lua_ls",
+    "rust_analyzer",
 }
 
 require("mason").setup()
