@@ -24,4 +24,7 @@
       - wget
       - curl
       - python3-pip
+      - ShellCheck
+      - stow
+      - git
     state: latest
