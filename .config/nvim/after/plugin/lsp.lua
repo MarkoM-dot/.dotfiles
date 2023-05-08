@@ -10,7 +10,6 @@ local servers = {
 	"dockerls",
 	"sqlls",
 	"marksman",
-	"lua_ls",
 }
 
 require("mason").setup()
