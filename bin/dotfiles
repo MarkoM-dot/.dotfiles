@@ -5,23 +5,13 @@ EXE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 REPO_DIR=$(dirname "$EXE_DIR")
 SSH_DIR="$HOME/.ssh"
 USER=$( whoami )
-USER_GROUP=$(id -gn $USER )
+USER_GROUP=$(id -gn "$USER" )
 
 fedora() {
     if ! [ -x "$(command -v ansible)" ]; then
         printf "\n\nInstalling ansible...\n\n"
         sudo dnf update -y
         sudo dnf install ansible -y
-    fi
-
-    if ! [ -x "$(command -v stow)" ]; then
-        printf "\n\nInstalling stow...\n\n"
-        sudo dnf install -y stow
-    fi
-
-    if ! [ -x "$(command -v git)" ]; then
-        printf "\n\nInstalling git\n\n"
-        sudo dnf install -y git 
     fi
 }
 
@@ -32,16 +22,6 @@ debian() {
         sudo apt install software-properties-common -y
         sudo add-apt-repository --yes --update ppa:ansible/ansible
         sudo apt install -y ansible
-    fi
-
-    if ! [ -x "$(command -v stow)" ]; then
-        printf "\n\nInstalling stow...\n\n"
-        sudo apt install -y stow
-    fi
-
-    if ! [ -x "$(command -v git)" ]; then
-        printf "\n\nInstalling git\n\n"
-        sudo apt install -y git 
     fi
 }
 
@@ -61,18 +41,18 @@ osInfo["debian_version"]=debian
 osInfo["alpine-release"]=alpine
 osInfo["arch-release"]=arch
 
-OS="`uname`"
+OS=$( uname )
 case $OS in
     'Linux')
-        for distro in ${!osInfo[@]}; do
+        for distro in "${!osInfo[@]}"; do
             if [[ -f "/etc/"$distro ]]; then
-                printf "\n\nIdentified: $distro\n\n"
+                printf "\n\nIdentified: %s\n\n" "$distro"
                 ${osInfo[$distro]}
                 break
             fi
-            echo "Could not find Linux distribution..."
-            exit 1
-        done;;
+        done
+        echo "Could not find Linux distribution..."
+        exit 1;;
 
     'Darwin')
         if ! [ -x "$(command -v brew)" ]; then
@@ -91,7 +71,7 @@ case $OS in
             brew install git 
         fi;;
     *)
-        printf "Program not configured for $OS"
+        printf "Program not configured for %s" "$OS"
         exit 1;;
 esac
 
@@ -113,7 +93,7 @@ fi
 # Will only work outside of test environment
 if [ -z "$TEST" ]; then
     printf "\n\nPulling most recent dotfiles\n\n"
-    cd $REPO_DIR
+    cd "$REPO_DIR"
     git pull
 fi
 
@@ -122,8 +102,13 @@ ansible-playbook "$REPO_DIR/main.yml" -i "$REPO_DIR/inventory" --ask-become-pass
 
 printf "\n\nFinished Ansible playbook!\n\n"
 
+if ! [ -x "$(command -v stow)" ]; then
+    printf "\n\nYou require stow to create symbolic links...\n\n"
+    exit 1
+fi
+
 printf "\n\nExecute Stow...\n\n"
-stow . -d $REPO_DIR -t ~
+stow . -d "$REPO_DIR" -t ~
 
 printf "\n\nSource bashrc\n\n"
 . ~/.bashrc
