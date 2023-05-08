@@ -66,14 +66,6 @@ case $OS in
 
         if ! [ -x "$(command -v ansible)" ]; then
             brew install ansible
-        fi
-
-        if ! [ -x "$(command -v stow)" ]; then
-            brew install stow
-        fi
-        
-        if ! [ -x "$(command -v git)" ]; then
-            brew install git 
         fi;;
     *)
         printf "Program not configured for %s" "$OS"
@@ -95,7 +87,7 @@ if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
     chmod 600 "$SSH_DIR/authorized_keys"
 fi
 
-# Will only work outside of test environment
+# git pull will only work outside of test environment
 if [ -z "$TEST" ]; then
     printf "\n\nPulling most recent dotfiles\n\n"
     cd "$REPO_DIR"
