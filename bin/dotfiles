@@ -42,17 +42,22 @@ osInfo["alpine-release"]=alpine
 osInfo["arch-release"]=arch
 
 OS=$( uname )
+found_distro=false
 case $OS in
     'Linux')
         for distro in "${!osInfo[@]}"; do
             if [[ -f "/etc/"$distro ]]; then
                 printf "\n\nIdentified: %s\n\n" "$distro"
                 ${osInfo[$distro]}
+                found_distro=true
                 break
             fi
         done
-        echo "Could not find Linux distribution..."
-        exit 1;;
+
+        if [ "$found_distro" = false ]; then
+            echo "Could not find Linux distribution..."
+            exit 1
+        fi;;
 
     'Darwin')
         if ! [ -x "$(command -v brew)" ]; then
