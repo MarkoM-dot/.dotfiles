@@ -11,49 +11,45 @@
       - cargo
     state: latest
 
-# Community cargo installs .cargo in /root directory
-# Modifications are made to change this inaccuracy
+- name: Download rustup
+  when: cargo_exists is failed
+  get_url:
+    url: https://sh.rustup.rs
+    dest: /tmp/sh.rustup.sh
+    mode: '0755'
+    force: 'yes'
 
-- name: Set CARGO_HOME
-  set_fact:
-    cargo_home: "/home/{{ current_user }}/.cargo"
+- name: Install rust and cargo
+  when: cargo_exists is failed
+  become: yes
+  become_user: "{{ current_user }}"
+  shell: /tmp/sh.rustup.sh -y
 
-- name: Create cargo directory
-  ansible.builtin.file:
-    path: "{{ cargo_home }}"
-    state: directory
-    owner: "{{ current_user }}"
-    group: "{{ current_group }}"
-    mode: "0755"
-
-- name: Rusty stuff
-  community.general.cargo:
+- name: Rust tools required for neovim
+  ansible.builtin.package:
     name:
       - ripgrep
       - fd-find
-      - starship
-      - stylua
     state: latest
-    path: "{{ cargo_home }}"
+
+- name: Check starship exists
   become: true
   become_user: "{{ current_user }}"
-  environment:
-    CARGO_HOME: "{{ cargo_home }}"
+  shell: starship --version
+  register: starship_exists 
+  ignore_errors: yes
 
+- name: Download starship installation script
+  when: starship_exists is failed
+  become: true
+  become_user: "{{ current_user }}"
+  get_url:
+    url: https://starship.rs/install.sh
+    dest: /tmp/starship_install.sh
+    mode: '0755'
 
-    #- name: Download rustup
-    #  when: cargo_exists is failed
-    #  get_url:
-    #    url: https://sh.rustup.rs
-    #    dest: /tmp/sh.rustup.sh
-    #    mode: '0755'
-    #    force: 'yes'
-    #  tags:
-    #    - rust
-
-    #- name: Install rust and cargo
-    #  when: cargo_exists is failed
-    #  shell: /tmp/sh.rustup.sh -y
-    #  tags:
-    #    - rust
-
+- name: Execute starship installation script
+  when: starship_exists is failed
+  become: true
+  become_user: "{{ current_user }}"
+  shell: /tmp/starship_install.sh --bin-dir /home/{{ current_user }}/.cargo/bin --yes
