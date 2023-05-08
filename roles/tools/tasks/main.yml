@@ -27,4 +27,5 @@
       - ShellCheck
       - stow
       - git
+      - gh
     state: latest
