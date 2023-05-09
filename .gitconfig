@@ -5,7 +5,7 @@
 	st = status
 
 [includeIf "gitdir:~/research/"]
-    path = .research.gitconfig
+    path = .gitconfig.d/.research.gitconfig
 
 [includeIf "gitdir:~/work/"]
     path = .work.gitconfig
