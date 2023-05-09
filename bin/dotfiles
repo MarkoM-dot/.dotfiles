@@ -4,7 +4,7 @@ set -o errexit
 EXE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 REPO_DIR=$(dirname "$EXE_DIR")
 SSH_DIR="$HOME/.ssh"
-USER=$( id -un "$USER" )
+USER=$( whoami )
 USER_GROUP=$(id -gn "$USER" )
 
 fedora() {
@@ -12,6 +12,10 @@ fedora() {
         printf "\n\nInstalling ansible...\n\n"
         sudo dnf update -y
         sudo dnf install ansible -y
+    fi
+
+    if ! [[ -x "$( command -v ssh-keygen )" ]]; then
+        sudo dnf install openssh -y
     fi
 }
 
