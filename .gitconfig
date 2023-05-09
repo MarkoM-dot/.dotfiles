@@ -1,8 +1,11 @@
-[user]
-	email = 83985775+MarkoM-dot@users.noreply.github.com
-	name = MarkoM-dot
 [alias]
 	co = checkout
 	br = branch
 	cm = commit -m
 	st = status
+
+[includeIf "gitdir:~/research/"]
+    path = .research.gitconfig
+
+[includeIf "gitdir:~/work/"]
+    path = .work.gitconfig
