@@ -4,7 +4,7 @@ set -o errexit
 EXE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 REPO_DIR=$(dirname "$EXE_DIR")
 SSH_DIR="$HOME/.ssh"
-USER=$( whoami )
+USER=$( id -un "$USER" )
 USER_GROUP=$(id -gn "$USER" )
 
 fedora() {
