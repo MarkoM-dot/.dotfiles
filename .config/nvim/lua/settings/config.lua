@@ -7,7 +7,7 @@ set.softtabstop = 4
 set.shiftwidth = 4
 
 set.relativenumber = true
-set.nu = true
+set.number = true
 
 set.errorbells = false
 set.encoding = "utf-8"
