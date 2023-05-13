@@ -5,5 +5,5 @@
 
 if findmnt -o PROPAGATION / | grep -q "private"; then
     echo "You've got an inconvenience on line ${LINENO} in file ${BASH_SOURCE[0]}"
-    # mount --make--rshared /
+    # mount --make-rshared /
 fi
