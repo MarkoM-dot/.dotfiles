@@ -10,7 +10,7 @@ local servers = {
 	"dockerls",
 	"sqlls",
 	"marksman",
-    "intelephense"
+	"intelephense",
 }
 
 require("mason").setup()
