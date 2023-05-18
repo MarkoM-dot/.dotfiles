@@ -1,8 +1,9 @@
 [alias]
-	co = checkout
-	br = branch
-	cm = commit -m
-	st = status
+    co = checkout
+    br = branch
+    cm = commit -m
+    st = status
+    sw = switch
 
 [includeIf "gitdir:~/research/"]
     path = .gitconfig.d/.research.gitconfig
