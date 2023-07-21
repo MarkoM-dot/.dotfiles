@@ -17,6 +17,7 @@ require("nvim-treesitter.configs").setup({
         "markdown",
         "markdown_inline",
         "perl",
+        "go",
     },
     sync_install = false,
     highlight = {
