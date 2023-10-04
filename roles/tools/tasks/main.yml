@@ -29,4 +29,5 @@
       - git
       - gh
       - libicu
+      - perf
     state: latest
