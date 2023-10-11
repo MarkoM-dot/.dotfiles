@@ -11,7 +11,7 @@
 
 - name: Download familiar tools
   ansible.builtin.package:
-    name: 
+    name:
       - cmake
       - make
       - gcc

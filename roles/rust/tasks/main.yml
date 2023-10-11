@@ -1,12 +1,12 @@
 - name: Check if cargo is installed
   shell: cargo --version
-  register: cargo_exists 
+  register: cargo_exists
   ignore_errors: yes
-  
+
 - name: Download rust and cargo
   when: cargo_exists is failed
   ansible.builtin.package:
-    name: 
+    name:
       - rust
       - cargo
     state: latest
@@ -36,7 +36,7 @@
   become: true
   become_user: "{{ current_user }}"
   shell: starship --version
-  register: starship_exists 
+  register: starship_exists
   ignore_errors: yes
 
 - name: Download starship installation script

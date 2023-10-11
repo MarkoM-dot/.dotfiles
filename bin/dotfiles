@@ -40,7 +40,7 @@ arch() {
 
 declare -A osInfo
 
-osInfo["fedora-release"]=fedora 
+osInfo["fedora-release"]=fedora
 osInfo["debian_version"]=debian
 osInfo["alpine-release"]=alpine
 osInfo["arch-release"]=arch
