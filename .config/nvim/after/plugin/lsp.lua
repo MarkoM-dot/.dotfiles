@@ -24,6 +24,7 @@ require("mason-lspconfig").setup({
 })
 
 local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protocol.make_client_capabilities())
+local lspconfig = require("lspconfig")
 
 local on_attach = function(client, bufnr)
 	local function buf_set_keymap(...)
@@ -49,8 +50,6 @@ local on_attach = function(client, bufnr)
 	buf_set_keymap("n", "<leader>db", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
 	buf_set_keymap("n", "<leader>dl", "<cmd>Telescope diagnostics<CR>", opts)
 end
-
-local lspconfig = require("lspconfig")
 
 for _, lsp in ipairs(servers) do
 	local setup_params = {
