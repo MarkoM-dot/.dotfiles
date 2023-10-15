@@ -4,6 +4,8 @@ repos:
     hooks:
     - id: trailing-whitespace
     - id: check-yaml
+    - id: check-toml
+    - id: check-json
     - id: debug-statements
   - repo: https://github.com/JohnnyMorganz/StyLua
     rev: v0.18.2
