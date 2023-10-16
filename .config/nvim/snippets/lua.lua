@@ -1,7 +1,6 @@
 local ls = require("luasnip")
 local fmt = require("luasnip.extras.fmt").fmt
 local rep = require("luasnip.extras").rep
-local snippets, autosnippets = {}, {}
 
 local define_function = ls.s(
   "local function",
@@ -26,7 +25,10 @@ local require_module = ls.s(
   })
 )
 
-table.insert(snippets, define_function)
-table.insert(snippets, require_module)
+local snippets = {
+  define_function,
+  require_module,
+}
+local autosnippets = {}
 
 return snippets, autosnippets
