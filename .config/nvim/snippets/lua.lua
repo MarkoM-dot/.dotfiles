@@ -20,15 +20,10 @@ end
 
 local require_module = ls.s(
   "require",
-  fmt(
-    [[
-local {} = require("{}")
-]],
-    {
-      ls.i(1, "module"),
-      rep(1),
-    }
-  )
+  fmt([[local {} = require("{}")]], {
+    ls.i(1, "module"),
+    rep(1),
+  })
 )
 
 table.insert(snippets, define_function)
