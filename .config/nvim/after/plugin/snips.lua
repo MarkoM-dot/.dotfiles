@@ -16,6 +16,21 @@ ls.config.set_config({
   },
 })
 
+ls.setup({
+  snip_env = {
+    s = function(...)
+      local snip = ls.s(...)
+      -- we can't just access the global `ls_file_snippets`, since it will be
+      -- resolved in the environment of the scope in which it was defined.
+      table.insert(getfenv(2).ls_file_snippets, snip)
+    end,
+    parse = function(...)
+      local snip = ls.parser.parse_snippet(...)
+      table.insert(getfenv(2).ls_file_snippets, snip)
+    end,
+  },
+})
+
 --[[
 vim.keymap.set({"i", "s"}, "<C-k>", function()
   if ls.expand_or_jumpable() then

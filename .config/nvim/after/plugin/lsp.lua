@@ -82,7 +82,16 @@ for _, lsp in ipairs(servers) do
   elseif lsp == "lua_ls" then
     setup_params.settings = {
       Lua = {
-        diagnostics = { globals = { "vim" } },
+        diagnostics = {
+          globals = {
+            "vim",
+            "s", -- snippet
+            "i", -- insert node
+            "t", -- text node
+            "fmt", -- format
+            "rep", -- repeat
+          },
+        },
         workspace = {
           library = {
             [vim.fn.expand("$VIMRUNTIME/lua")] = true,
