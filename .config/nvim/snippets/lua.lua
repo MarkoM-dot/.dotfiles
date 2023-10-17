@@ -1,4 +1,3 @@
--- luacheck: globals s i fmt rep
 return {
   s(
     "local function",
