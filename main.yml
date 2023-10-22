@@ -3,11 +3,27 @@
   become: yes
   become_user: root
   connection: local
-  roles:
-    - pre-tasks
-    - tools
-    - rust
-    - golang
-    - nodejs
-    - neovim
-    - post-tasks
+  tasks:
+    - name: Display OS Family
+      debug:
+        msg: "OS family is {{ ansible_facts['os_family'] }}"
+
+    - name: Set Fedora become_method
+      set_fact:
+        ansible_become_method: sudo
+      when: ansible_facts['os_family']|lower == 'redhat'
+
+    - name: Include Fedora roles
+      include_role:
+        name: fedora-tasks
+      when: ansible_facts['os_family']|lower == 'redhat'
+
+    - name: Set Alpine become method
+      set_fact:
+        ansible_become_method: doas
+      when: ansible_facts['os_family']|lower == 'alpine'
+
+    - name: Set Alpine roles
+      include_role:
+        name: alpine-tasks
+      when: ansible_facts['os_family']|lower == 'alpine'

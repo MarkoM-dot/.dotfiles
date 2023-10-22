@@ -1,0 +1,22 @@
+- name: Download familiar tools
+  ansible.builtin.package:
+    name:
+      - cmake
+      - make
+      - gcc
+      - g++
+      - musl-dev
+      - linux-headers
+      - automake
+      - clang
+      - unzip
+      - wget
+      - curl
+      - py3-pip
+      - ShellCheck
+      - stow
+      - git
+      - gh
+      - icu-libs
+      - perf
+    state: latest

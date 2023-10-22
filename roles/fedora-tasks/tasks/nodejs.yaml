@@ -1,0 +1,4 @@
+- name: Download nodejs
+  ansible.builtin.package:
+    name: nodejs
+    state: latest
