@@ -1,0 +1,14 @@
+FROM alpine:latest
+
+RUN apk update && apk add doas bash
+RUN adduser -D -h /home/markom-dot -s /bin/ash markom-dot && \
+    echo -e 'permit nopass markom-dot as root' > /etc/doas.d/doas.conf
+
+USER markom-dot
+
+WORKDIR /home/markom-dot/.dotfiles
+
+COPY --chown=markom-dot:markom-dot . .
+
+ENV TEST=TEST
+RUN ./bin/dotfiles | tee /tmp/dotfiles_log

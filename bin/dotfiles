@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 set -o errexit
 
 EXE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
@@ -30,7 +30,11 @@ debian() {
 }
 
 alpine() {
-    echo "Alpine"
+    if ! [ -x "$(command -v ansible)" ]; then
+        printf "\n\nInstalling ansible...\n\n"
+        doas apk update -y
+        doas apk add ansible -y
+    fi
 }
 
 arch() {
