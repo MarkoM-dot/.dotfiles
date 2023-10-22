@@ -1,7 +1,7 @@
-#!/usr/bin/env bash
+#!/bin/sh
 set -o errexit
 
-EXE_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
+EXE_DIR=$( dirname "$( realpath "${0}")")
 REPO_DIR=$(dirname "$EXE_DIR")
 SSH_DIR="$HOME/.ssh"
 USER=$( whoami )
@@ -14,7 +14,7 @@ fedora() {
         sudo dnf install ansible -y
     fi
 
-    if ! [[ -x "$( command -v ssh-keygen )" ]]; then
+    if ! [ -x "$( command -v ssh-keygen )" ]; then
         sudo dnf install openssh -y
     fi
 }
@@ -32,8 +32,12 @@ debian() {
 alpine() {
     if ! [ -x "$(command -v ansible)" ]; then
         printf "\n\nInstalling ansible...\n\n"
-        doas apk update -y
-        doas apk add ansible -y
+        doas apk update
+        doas apk add ansible
+    fi
+
+    if ! [ -x "$( command -v ssh-keygen )" ]; then
+        doas apk add openssh
     fi
 }
 
@@ -42,25 +46,27 @@ arch() {
 }
 
 
-declare -A osInfo
-
-osInfo["fedora-release"]=fedora
-osInfo["debian_version"]=debian
-osInfo["alpine-release"]=alpine
-osInfo["arch-release"]=arch
-
 OS=$( uname )
 found_distro=false
 case $OS in
     'Linux')
-        for distro in "${!osInfo[@]}"; do
-            if [[ -f "/etc/"$distro ]]; then
-                printf "\n\nIdentified: %s\n\n" "$distro"
-                ${osInfo[$distro]}
-                found_distro=true
-                break
-            fi
-        done
+        if [ -f "/etc/fedora-release" ]; then
+            printf "\n\nIdentified: Fedora\n\n"
+            fedora
+            found_distro=true
+        elif [ -f "/etc/debian_version" ]; then
+            printf "\n\nIdentified: Debian\n\n"
+            debian
+            found_distro=true
+        elif [ -f "/etc/alpine-release" ]; then
+            printf "\n\nIdentified: Alpine\n\n"
+            alpine
+            found_distro=true
+        elif [ -f "/etc/arch-release" ]; then
+            printf "\n\nIdentified: Arch btw\n\n"
+            arch
+            found_distro=true
+        fi
 
         if [ "$found_distro" = false ]; then
             echo "Could not find Linux distribution..."
@@ -81,7 +87,7 @@ case $OS in
 esac
 
 # generate an ssh key if nonexistent
-if ! [[ -f "$SSH_DIR/id_rsa" ]]; then
+if ! [ -f "$SSH_DIR/id_rsa" ]; then
     printf "\n\nGenerating ssh keys...\n\n"
 
     mkdir -p "$SSH_DIR"
