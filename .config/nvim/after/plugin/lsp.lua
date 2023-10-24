@@ -85,11 +85,6 @@ for _, lsp in ipairs(servers) do
         diagnostics = {
           globals = {
             "vim",
-            "s", -- snippet
-            "i", -- insert node
-            "t", -- text node
-            "fmt", -- format
-            "rep", -- repeat
           },
         },
         workspace = {
