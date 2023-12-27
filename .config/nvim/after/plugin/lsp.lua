@@ -50,6 +50,7 @@ local on_attach = function(client, bufnr)
 
   buf_set_keymap("n", "<leader>df", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts)
   buf_set_keymap("n", "<leader>db", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts)
+  buf_set_keymap("n", "<leader>do", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   buf_set_keymap("n", "<leader>dl", "<cmd>Telescope diagnostics<CR>", opts)
 end
 

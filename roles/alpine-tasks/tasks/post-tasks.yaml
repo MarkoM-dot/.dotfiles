@@ -1,3 +1,0 @@
-- name: Remove obsolete packages
-  ansible.builtin.package:
-    autoremove: yes

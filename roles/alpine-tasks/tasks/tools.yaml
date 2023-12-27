@@ -13,10 +13,10 @@
       - wget
       - curl
       - py3-pip
-      - ShellCheck
+        #- ShellCheck
       - stow
       - git
-      - gh
+        #- gh
       - icu-libs
       - perf
     state: latest

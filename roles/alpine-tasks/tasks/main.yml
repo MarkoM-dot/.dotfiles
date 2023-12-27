@@ -4,4 +4,3 @@
 - include: nodejs.yaml
 - include: rust.yaml
 - include: neovim.yaml
-- include: post-tasks.yaml

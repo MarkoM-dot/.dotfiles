@@ -29,7 +29,7 @@
   ansible.builtin.package:
     name:
       - ripgrep
-      - fd-find
+      - fd
     state: latest
 
 - name: Check starship exists
