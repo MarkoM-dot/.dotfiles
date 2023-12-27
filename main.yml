@@ -2,28 +2,40 @@
   hosts: local
   become: yes
   become_user: root
+  become_method: doas
   connection: local
-  tasks:
-    - name: Display OS Family
-      debug:
-        msg: "OS family is {{ ansible_facts['os_family'] }}"
+  gather_facts: no
 
-    - name: Set Fedora become_method
-      set_fact:
-        ansible_become_method: sudo
-      when: ansible_facts['os_family']|lower == 'redhat'
+  pre_tasks:
+    - name: Determine become_method and include roles by OS family
+      setup:
+        gather_subset:
+          - '!all'
+          - '!any'
+          - '!network'
+          - '!virtual'
+          - '!hardware'
+          - '!facter'
+          - '!ohai'
+          - '!windows'
+      changed_when: false
 
-    - name: Include Fedora roles
-      include_role:
-        name: fedora-tasks
-      when: ansible_facts['os_family']|lower == 'redhat'
+    - block:
+        - name: Set privilege escalation method for Alpine
+          set_fact:
+            ansible_become_method: doas
 
-    - name: Set Alpine become method
-      set_fact:
-        ansible_become_method: doas
-      when: ansible_facts['os_family']|lower == 'alpine'
+        - name: Include Alpine Roles
+          include_role:
+            name: alpine-tasks
+      when: ansible_os_family == 'Alpine'
 
-    - name: Set Alpine roles
-      include_role:
-        name: alpine-tasks
-      when: ansible_facts['os_family']|lower == 'alpine'
+    - block:
+        - name: Set privilege escalation method for RedHat
+          set_fact:
+            ansible_become_method: sudo
+
+        - name: Include RedHat roles
+          include_role:
+            name: fedora-tasks
+      when: ansible_os_family == 'RedHat'
