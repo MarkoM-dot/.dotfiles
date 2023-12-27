@@ -12,6 +12,7 @@
 misc
 hosts
 Dockerfile
+Dockerfile.*
 
 ^/main.*
 ^/README.*
