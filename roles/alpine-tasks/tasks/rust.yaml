@@ -32,24 +32,7 @@
       - fd
     state: latest
 
-- name: Check starship exists
-  become: true
-  become_user: "{{ current_user }}"
-  shell: starship --version
-  register: starship_exists
-  ignore_errors: yes
-
-- name: Download starship installation script
-  when: starship_exists is failed
-  become: true
-  become_user: "{{ current_user }}"
-  get_url:
-    url: https://starship.rs/install.sh
-    dest: /tmp/starship_install.sh
-    mode: '0755'
-
-- name: Execute starship installation script
-  when: starship_exists is failed
-  become: true
-  become_user: "{{ current_user }}"
-  shell: /tmp/starship_install.sh --bin-dir /home/{{ current_user }}/.cargo/bin --yes
+- name: Starship # No ash support yet
+  ansible.builtin.package:
+    name: starship
+    state: latest
