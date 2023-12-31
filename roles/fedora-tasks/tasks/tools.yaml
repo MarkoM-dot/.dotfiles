@@ -2,6 +2,7 @@
   ansible.builtin.package:
     name:
       - cmake
+      - pass
       - make
       - gcc
       - gcc-c++
