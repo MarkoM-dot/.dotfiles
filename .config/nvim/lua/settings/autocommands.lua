@@ -7,3 +7,12 @@ vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Briefly highlight yanked text.",
   pattern = "*",
 })
+
+local terminal_group =
+  vim.api.nvim_create_augroup("Terminal settings", { clear = true })
+vim.api.nvim_create_autocmd("TermOpen", {
+  command = "setlocal nonumber norelativenumber",
+  group = terminal_group,
+  desc = "No line numbers in terminal mode",
+  pattern = "term://*",
+})
