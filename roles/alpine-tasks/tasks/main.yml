@@ -1,6 +1,6 @@
-- include: pre-tasks.yaml
-- include: tools.yaml
-- include: golang.yaml
-- include: nodejs.yaml
-- include: rust.yaml
-- include: neovim.yaml
+- import_tasks: pre-tasks.yaml
+- import_tasks: tools.yaml
+- import_tasks: golang.yaml
+- import_tasks: nodejs.yaml
+- import_tasks: rust.yaml
+- import_tasks: neovim.yaml
