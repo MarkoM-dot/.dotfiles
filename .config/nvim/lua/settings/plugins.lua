@@ -6,9 +6,7 @@ require("lazy").setup({
   },
   {
     "nvim-treesitter/nvim-treesitter",
-    build = function()
-      require("nvim-treesitter.install").update({ with_sync = true })
-    end,
+    build = ":TSUpdate",
   },
 
   "williamboman/mason.nvim",
