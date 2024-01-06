@@ -13,7 +13,6 @@ return {
 
   { "rust-lang/rust.vim", ft = "rust" },
   "onsails/lspkind-nvim",
-  "ellisonleao/gruvbox.nvim",
 
   {
     "rose-pine/neovim",
