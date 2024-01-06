@@ -21,14 +21,12 @@ return {
           "dockerfile",
           "markdown",
           "markdown_inline",
-          "perl",
           "go",
-          "query",
         },
         sync_install = false,
         highlight = {
           enable = true,
-          additional_vim_regex_highlighting = false,
+          additional_vim_regex_highlighting = { "markdown" },
         },
         indent = {
           enable = true,
