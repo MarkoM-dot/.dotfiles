@@ -41,8 +41,8 @@ stow -D .
 ## Testing
 
 ```sh
-docker build -f Dockerfile.Alpine -t alpine-dotfiles .
-docker run -it alpine-dotfiles
+docker build -f Dockerfile.Fedora -t fedora-dotfiles .
+docker run -it fedora-dotfiles
 ```
 
 ## What now?
