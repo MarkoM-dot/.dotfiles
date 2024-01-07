@@ -1,1 +1,1 @@
-require("common.frontend_indentation").setup()
+require("markom-dot.common.frontend_indentation").setup()

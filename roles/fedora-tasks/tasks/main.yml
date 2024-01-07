@@ -1,0 +1,7 @@
+- include: pre-tasks.yaml
+- include: tools.yaml
+- include: golang.yaml
+- include: nodejs.yaml
+- include: rust.yaml
+- include: neovim.yaml
+- include: post-tasks.yaml

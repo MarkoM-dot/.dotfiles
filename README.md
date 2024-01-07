@@ -31,12 +31,19 @@ execute the following command in your ~/.dotfiles directory:
 stow -D .
 ```
 
-### Project Layout
+## Project Layout
 
 
     ├─ .config/         configuration settings
     ├─ bin/             build scripts
     ├─ roles/           tasks and related artifacts used by ansible-playbook
+
+## Testing
+
+```sh
+docker build -f Dockerfile.Alpine -t alpine-dotfiles .
+docker run -it alpine-dotfiles
+```
 
 ## What now?
 

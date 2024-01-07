@@ -2,12 +2,40 @@
   hosts: local
   become: yes
   become_user: root
+  become_method: doas
   connection: local
-  roles:
-    - pre-tasks
-    - tools
-    - rust
-    - golang
-    - nodejs
-    - neovim
-    - post-tasks
+  gather_facts: no
+
+  pre_tasks:
+    - name: Determine become_method and include roles by OS family
+      setup:
+        gather_subset:
+          - '!all'
+          - '!any'
+          - '!network'
+          - '!virtual'
+          - '!hardware'
+          - '!facter'
+          - '!ohai'
+          - '!windows'
+      changed_when: false
+
+    - block:
+        - name: Set privilege escalation method for Alpine
+          set_fact:
+            ansible_become_method: doas
+
+        - name: Include Alpine Roles
+          include_role:
+            name: alpine-tasks
+      when: ansible_os_family == 'Alpine'
+
+    - block:
+        - name: Set privilege escalation method for RedHat
+          set_fact:
+            ansible_become_method: sudo
+
+        - name: Include RedHat roles
+          include_role:
+            name: fedora-tasks
+      when: ansible_os_family == 'RedHat'

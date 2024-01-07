@@ -1,18 +1,8 @@
-- name: Check apt availability
-  ansible.builtin.command: apt --version
-  register: apt_available
-  ignore_errors: yes
-
-- name: Download build-essential
-  when: apt_available.rc == 0
-  ansible.builtin.package:
-    name: build-essential
-    state: latest
-
 - name: Download familiar tools
   ansible.builtin.package:
     name:
       - cmake
+      - pass
       - make
       - gcc
       - gcc-c++

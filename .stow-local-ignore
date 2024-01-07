@@ -2,6 +2,8 @@
 /.github
 /.gitignore
 
+/stylua.toml
+
 /bin
 /inventory
 /tests
@@ -10,6 +12,7 @@
 misc
 hosts
 Dockerfile
+Dockerfile.*
 
 ^/main.*
 ^/README.*

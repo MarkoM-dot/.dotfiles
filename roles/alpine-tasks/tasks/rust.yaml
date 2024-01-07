@@ -1,0 +1,38 @@
+- name: Check if cargo is installed
+  shell: cargo --version
+  register: cargo_exists
+  ignore_errors: yes
+
+- name: Download rust and cargo
+  when: cargo_exists is failed
+  ansible.builtin.package:
+    name:
+      - rust
+      - cargo
+    state: latest
+
+- name: Download rustup
+  when: cargo_exists is failed
+  get_url:
+    url: https://sh.rustup.rs
+    dest: /tmp/sh.rustup.sh
+    mode: '0755'
+    force: 'yes'
+
+- name: Install rust and cargo
+  when: cargo_exists is failed
+  become: yes
+  become_user: "{{ current_user }}"
+  shell: /tmp/sh.rustup.sh -y
+
+- name: Rust tools required for neovim
+  ansible.builtin.package:
+    name:
+      - ripgrep
+      - fd
+    state: latest
+
+- name: Starship # No ash support yet
+  ansible.builtin.package:
+    name: starship
+    state: latest
