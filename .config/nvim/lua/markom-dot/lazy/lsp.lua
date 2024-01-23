@@ -38,56 +38,76 @@ return {
     },
     config = function()
       require("mason").setup()
+      local cmp_lsp = require("cmp_nvim_lsp")
+      local capabilities = vim.tbl_deep_extend(
+        "force",
+        {},
+        vim.lsp.protocol.make_client_capabilities(),
+        cmp_lsp.default_capabilities()
+      )
+
       require("mason-lspconfig").setup({
         ensure_installed = servers,
         handlers = {
           function(server_name)
-            if server_name == "lua_ls" then
-              require("lspconfig")[server_name].setup({
-                settings = {
-                  Lua = {
-                    diagnostics = {
-                      globals = {
-                        "vim",
-                      },
+            require("lspconfig")[server_name].setup({
+              capabilities = capabilities,
+            })
+          end,
+
+          ["lua_ls"] = function()
+            local lspconfig = require("lspconfig")
+            lspconfig.lua_ls.setup({
+              capabilities = capabilities,
+              settings = {
+                Lua = {
+                  diagnostics = {
+                    globals = {
+                      "vim",
                     },
-                    workspace = {
-                      library = {
-                        [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-                        [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
-                      },
+                  },
+                  workspace = {
+                    library = {
+                      [vim.fn.expand("$VIMRUNTIME/lua")] = true,
+                      [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
                     },
                   },
                 },
-              })
-            elseif server_name == "emmet_ls" then
-              require("lspconfig")[server_name].setup({
-                filetypes = {
-                  "html",
-                  "typescriptreact",
-                  "javascript",
-                  "css",
-                  "sass",
-                  "scss",
-                  "less",
-                  "tera",
-                },
-                init_options = {
-                  html = { options = { ["bem.enabled"] = true } },
-                },
-              })
-            elseif server_name == "rust_analyzer" then
-              require("lspconfig")[server_name].setup({
-                cmd = {
-                  "rustup",
-                  "run",
-                  "stable",
-                  "rust-analyzer",
-                },
-              })
-            else
-              require("lspconfig")[server_name].setup({}) -- default handler options
-            end
+              },
+            })
+          end,
+
+          ["emmet_ls"] = function()
+            local lspconfig = require("lspconfig")
+            lspconfig.emmet_ls.setup({
+              capabilities = capabilities,
+              filetypes = {
+                "html",
+                "typescriptreact",
+                "javascript",
+                "css",
+                "sass",
+                "scss",
+                "less",
+                "tera",
+              },
+              init_options = {
+                html = { options = { ["bem.enabled"] = true } },
+              },
+            })
+          end,
+
+          ["rust_analyzer"] = function()
+            local lspconfig = require("lspconfig")
+            lspconfig.rust_analyzer.setup({
+              capabilities = capabilities,
+              cmd = {
+                "rustup",
+                "run",
+                "stable",
+                "rust-analyzer",
+              },
+            })
           end,
         },
       })
