@@ -20,15 +20,6 @@
       changed_when: false
 
     - block:
-        - name: Set privilege escalation method for Alpine
-          set_fact:
-            ansible_become_method: doas
-
-        - name: Include Alpine Roles
-          include_tasks: roles/apline-tasks/tasks/main.yml
-      when: ansible_os_family == 'Alpine'
-
-    - block:
         - name: Set privilege escalation method for RedHat
           set_fact:
             ansible_become_method: sudo
