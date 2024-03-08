@@ -29,18 +29,6 @@ debian() {
     fi
 }
 
-alpine() {
-    if ! [ -x "$(command -v ansible)" ]; then
-        printf "\n\nInstalling ansible...\n\n"
-        doas apk update
-        doas apk add ansible
-    fi
-
-    if ! [ -x "$( command -v ssh-keygen )" ]; then
-        doas apk add openssh
-    fi
-}
-
 arch() {
     echo "Arch btw"
 }
@@ -57,10 +45,6 @@ case $OS in
         elif [ -f "/etc/debian_version" ]; then
             printf "\n\nIdentified: Debian\n\n"
             debian
-            found_distro=true
-        elif [ -f "/etc/alpine-release" ]; then
-            printf "\n\nIdentified: Alpine\n\n"
-            alpine
             found_distro=true
         elif [ -f "/etc/arch-release" ]; then
             printf "\n\nIdentified: Arch btw\n\n"
