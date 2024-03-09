@@ -59,8 +59,8 @@ autocmd("FileType", {
   callback = function()
     vim.schedule(function()
       vim.keymap.set("n", "<leader>x", function()
-        vim.api.nvim_command("write")
-        vim.api.nvim_command("source %")
+        local cmd = "write | source " .. vim.fn.expand("%")
+        vim.api.nvim_exec2(cmd, {})
       end, { buffer = true, silent = true })
     end)
   end,
@@ -73,8 +73,8 @@ autocmd("FileType", {
   callback = function()
     vim.schedule(function()
       vim.keymap.set("n", "<leader>x", function()
-        vim.api.nvim_command("write")
-        vim.api.nvim_command("split | term python3 " .. vim.fn.expand("%"))
+        local cmd = "write | split | term python3 " .. vim.fn.expand("%")
+        vim.api.nvim_exec2(cmd, {})
       end, { buffer = true, silent = true })
     end)
   end,
