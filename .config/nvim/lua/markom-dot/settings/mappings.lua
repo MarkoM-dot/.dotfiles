@@ -1,15 +1,16 @@
+local command = require("markom-dot.common.commands").command
+
 vim.g.mapleader = " "
 local map = vim.keymap
 
 map.set("i", "jj", "<Esc>")
 
-map.set("n", "<leader><leader>", "<c-^>")
-map.set("n", "<leader>h", ":wincmd h<CR>")
-map.set("n", "<leader>j", ":wincmd j<CR>")
-map.set("n", "<leader>k", ":wincmd k<CR>")
-map.set("n", "<leader>l", ":wincmd l<CR>")
-map.set("n", "<leader>n", ":Ex<CR>")
-
+map.set("n", "<leader><leader>", "<C-^>")
+map.set("n", "<leader>h", command({ cmd = "wincmd", args = { "h" } }, {}))
+map.set("n", "<leader>j", command({ cmd = "wincmd", args = { "j" } }, {}))
+map.set("n", "<leader>k", command({ cmd = "wincmd", args = { "k" } }, {}))
+map.set("n", "<leader>l", command({ cmd = "wincmd", args = { "l" } }, {}))
+map.set("n", "<leader>n", command({ cmd = "Explore" }, {}))
 map.set("t", "<Esc>", [[<C-\><C-n>]])
 
-vim.keymap.set("n", "<leader>T", ":InspectTree<CR>")
+map.set("n", "<leader>T", command({ cmd = "InspectTree" }, {}))
