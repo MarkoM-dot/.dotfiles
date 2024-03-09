@@ -5,8 +5,17 @@ return {
     config = function()
       require("gitsigns").setup()
       local map = vim.keymap
-      map.set("n", "<leader>d", ":Gitsigns preview_hunk<CR>")
-      map.set("n", "<leader>b", ":Gitsigns blame_line<CR>")
+      local command = require("markom-dot.common.commands").command
+      map.set(
+        "n",
+        "<leader>d",
+        command({ cmd = "Gitsigns", args = { "preview_hunk" } }, {})
+      )
+      map.set(
+        "n",
+        "<leader>b",
+        command({ cmd = "Gitsigns", args = { "blame_line" } }, {})
+      )
     end,
   },
 }
