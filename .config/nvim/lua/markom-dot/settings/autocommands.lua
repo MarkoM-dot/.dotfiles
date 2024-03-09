@@ -10,7 +10,7 @@ autocmd("TextYankPost", {
 
 autocmd("TermOpen", {
   command = "setlocal nonumber norelativenumber",
-  group = vim.api.nvim_create_augroup("Terminal settings", { clear = true }),
+  group = vim.api.nvim_create_augroup("TerminalSettings", { clear = true }),
   desc = "No line numbers in terminal mode",
   pattern = "term://*",
 })
@@ -61,9 +61,23 @@ autocmd("FileType", {
       vim.keymap.set("n", "<leader>x", function()
         vim.api.nvim_command("write")
         vim.api.nvim_command("source %")
-      end, { buffer = true })
+      end, { buffer = true, silent = true })
     end)
   end,
-  group = vim.api.nvim_create_augroup("UserFileTypeConfig", { clear = true }),
+  group = vim.api.nvim_create_augroup("LuaFileTypeConfig", { clear = true }),
+  desc = "Write and execute current buffer.",
+})
+
+autocmd("FileType", {
+  pattern = "python",
+  callback = function()
+    vim.schedule(function()
+      vim.keymap.set("n", "<leader>x", function()
+        vim.api.nvim_command("write")
+        vim.api.nvim_command("split | term python3 " .. vim.fn.expand("%"))
+      end, { buffer = true, silent = true })
+    end)
+  end,
+  group = vim.api.nvim_create_augroup("PythonFileTypeConfig", { clear = true }),
   desc = "Write and execute current buffer.",
 })
