@@ -53,3 +53,17 @@ autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
   desc = "Set keymaps when Lsp is attached.",
 })
+
+autocmd("FileType", {
+  pattern = "lua",
+  callback = function()
+    vim.schedule(function()
+      vim.keymap.set("n", "<leader>x", function()
+        vim.api.nvim_command("write")
+        vim.api.nvim_command("source %")
+      end, { buffer = true })
+    end)
+  end,
+  group = vim.api.nvim_create_augroup("UserFileTypeConfig", { clear = true }),
+  desc = "Write and execute current buffer.",
+})
