@@ -1,5 +1,4 @@
 local servers = {
-  "vimls",
   "lua_ls",
   "clangd",
   "pyright",
