@@ -8,14 +8,10 @@ return {
       local command = require("markom-dot.common.commands").command
       map.set(
         "n",
-        "<leader>d",
-        command({ cmd = "Gitsigns", args = { "preview_hunk" } }, {})
+        "<leader>B",
+        command({ cmd = "Gitsigns", args = { "preview_hunk" } })
       )
-      map.set(
-        "n",
-        "<leader>b",
-        command({ cmd = "Gitsigns", args = { "blame_line" } }, {})
-      )
+      map.set("n", "<leader>b", command({ cmd = "Gitsigns", args = { "blame_line" } }))
     end,
   },
 }
