@@ -1,6 +1,7 @@
 require("markom-dot.settings.config")
 require("markom-dot.settings.mappings")
 require("markom-dot.settings.autocommands")
+require("markom-dot.settings.functions")
 
 vim.loader.enable() -- might be default in v10.x.x
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
