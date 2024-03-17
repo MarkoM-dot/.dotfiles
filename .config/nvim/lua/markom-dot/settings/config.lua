@@ -1,4 +1,8 @@
+local g_set = vim.g
 local set = vim.opt
+
+g_set.netrw_banner = 0
+g_set.mapleader = " "
 
 set.incsearch = true
 set.ignorecase = true
