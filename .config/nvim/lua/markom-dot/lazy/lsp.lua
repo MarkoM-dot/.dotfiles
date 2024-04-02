@@ -197,14 +197,15 @@ return {
         end
       end)
       --]]
+      local map = vim.keymap.set
 
-      vim.keymap.set({ "i", "s" }, "<C-k>", function()
+      map({ "i", "s" }, "<C-k>", function()
         if ls.jumpable(1) then
           ls.jump(1)
         end
       end)
 
-      vim.keymap.set({ "i", "s" }, "<C-j>", function()
+      map({ "i", "s" }, "<C-j>", function()
         if ls.jumpable(-1) then
           ls.jump(-1)
         end
