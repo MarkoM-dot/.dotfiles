@@ -4,6 +4,9 @@ return {
     build = ":TSUpdate",
     config = function()
       require("nvim-treesitter.configs").setup({
+        ignore_install = {},
+        modules = {},
+        auto_install = false,
         ensure_installed = {
           "c",
           "vim",

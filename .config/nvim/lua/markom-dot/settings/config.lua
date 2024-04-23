@@ -3,6 +3,7 @@ local set = vim.opt
 
 g_set.netrw_banner = 0
 g_set.mapleader = " "
+g_set.maplocalleader = " "
 
 set.incsearch = true
 set.ignorecase = true
@@ -17,7 +18,6 @@ set.splitbelow = true
 set.splitright = true
 set.errorbells = false
 set.clipboard:append("unnamedplus")
-set.completeopt = { "menu", "menuone", "noselect" }
 set.tabstop = 4
 set.shiftwidth = 4
 set.softtabstop = 4

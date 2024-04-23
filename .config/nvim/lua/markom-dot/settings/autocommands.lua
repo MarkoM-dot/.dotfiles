@@ -56,34 +56,3 @@ autocmd("LspAttach", {
   group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
   desc = "Set keymaps when Lsp is attached.",
 })
-
-autocmd("FileType", {
-  pattern = "lua",
-  callback = function()
-    vim.schedule(function()
-      vim.keymap.set("n", "<leader>x", function()
-        local cmd = "write | source " .. vim.fn.expand("%:p")
-        vim.api.nvim_exec2(cmd, {})
-      end, { buffer = true, silent = true })
-    end)
-  end,
-  group = vim.api.nvim_create_augroup("LuaFileTypeConfig", { clear = true }),
-  desc = "Write and execute current buffer.",
-})
-
-autocmd("FileType", {
-  pattern = "python",
-  callback = function()
-    vim.schedule(function()
-      vim.keymap.set("n", "<leader>x", function()
-        local cmd = "write | split | term python3 "
-          .. vim.fn.shellescape(vim.fn.expand("%"))
-        print("hey")
-        print(cmd)
-        vim.api.nvim_exec2(cmd, {})
-      end, { buffer = true, silent = true })
-    end)
-  end,
-  group = vim.api.nvim_create_augroup("PythonFileTypeConfig", { clear = true }),
-  desc = "Write and execute current buffer.",
-})
