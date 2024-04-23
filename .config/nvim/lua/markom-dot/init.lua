@@ -15,4 +15,4 @@ if not vim.loop.fs_stat(lazypath) then
   })
 end
 vim.opt.rtp:prepend(lazypath)
-require("lazy").setup("markom-dot.lazy", { notify = false })
+require("lazy").setup("markom-dot.lazy", { change_detection = { notify = false } })

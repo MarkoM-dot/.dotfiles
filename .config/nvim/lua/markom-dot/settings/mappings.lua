@@ -1,15 +1,26 @@
-vim.g.mapleader = " "
-local map = vim.keymap
+local command = require("markom-dot.common.commands").command
+local map = vim.keymap.set
 
-map.set("i", "jj", "<Esc>")
+map("i", "jj", "<Esc>")
 
-map.set("n", "<leader><leader>", "<c-^>")
-map.set("n", "<leader>h", ":wincmd h<CR>")
-map.set("n", "<leader>j", ":wincmd j<CR>")
-map.set("n", "<leader>k", ":wincmd k<CR>")
-map.set("n", "<leader>l", ":wincmd l<CR>")
-map.set("n", "<leader>n", ":Ex<CR>")
+map("n", "<leader><leader>", "<C-^>")
+map("n", "<leader>h", command({ cmd = "wincmd", args = { "h" } }))
+map("n", "<leader>j", command({ cmd = "wincmd", args = { "j" } }))
+map("n", "<leader>k", command({ cmd = "wincmd", args = { "k" } }))
+map("n", "<leader>l", command({ cmd = "wincmd", args = { "l" } }))
+map("n", "<leader>n", command({ cmd = "Explore" }))
+map("n", "<leader>T", command({ cmd = "InspectTree" }))
+map("n", "<C-k>", command({ cmd = "resize", args = { "+1" } }))
+map("n", "<C-j>", command({ cmd = "resize", args = { "-1" } }))
+map(
+  "n",
+  "<C-h>",
+  command({ cmd = "resize", args = { "-1" }, mods = { vertical = true } })
+)
+map(
+  "n",
+  "<C-l>",
+  command({ cmd = "resize", args = { "+1" }, mods = { vertical = true } })
+)
 
-map.set("t", "<Esc>", [[<C-\><C-n>]])
-
-vim.keymap.set("n", "<leader>T", ":InspectTree<CR>")
+map("t", "<Esc>", [[<C-\><C-n>]])
