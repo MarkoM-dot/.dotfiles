@@ -31,7 +31,7 @@ autocmd("LspAttach", {
       vim.lsp.buf.declaration()
     end, opts)
     map("n", "gr", function()
-      vim.lsp.buf.references()
+      vim.lsp.buf.rename()
     end, opts)
     map("n", "gi", function()
       vim.lsp.buf.implementation()
