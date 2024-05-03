@@ -50,6 +50,30 @@ return {
             end,
             append_lines = example.meeting_append_lines,
           },
+          python = {
+            filetype = "markdown",
+            path = function()
+              return "/python/"
+            end,
+            filename = function()
+              return "index.md"
+            end,
+            prepend_lines = function()
+              return { "# Python", "" }
+            end,
+          },
+          javascript = {
+            filetype = "markdown",
+            path = function()
+              return "/javascript/"
+            end,
+            filename = function()
+              return "index.md"
+            end,
+            prepend_lines = function()
+              return { "# Javascript", "", "> I love it." }
+            end,
+          },
         },
       })
       if pcall(require, "telescope") then
