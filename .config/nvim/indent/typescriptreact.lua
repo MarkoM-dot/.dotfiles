@@ -1,1 +1,2 @@
-require("markom-dot.common.frontend_indentation").setup()
+local common = require("markom-dot.common")
+common.frontend_indentation()

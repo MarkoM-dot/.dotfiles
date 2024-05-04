@@ -1,4 +1,4 @@
-local command = require("markom-dot.common.commands").command
+local common = require("markom-dot.common")
 local autocmd = vim.api.nvim_create_autocmd
 
 autocmd("TextYankPost", {
@@ -51,7 +51,11 @@ autocmd("LspAttach", {
     map("n", "<leader>do", function()
       vim.diagnostic.open_float()
     end, opts)
-    map("n", "<leader>dl", command({ cmd = "Telescope", args = { "diagnostics" } }))
+    map(
+      "n",
+      "<leader>dl",
+      common.command({ cmd = "Telescope", args = { "diagnostics" } })
+    )
   end,
   group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
   desc = "Set keymaps when Lsp is attached.",
