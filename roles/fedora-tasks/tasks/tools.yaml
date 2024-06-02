@@ -20,4 +20,6 @@
       - gh
       - libicu
       - perf
+      - iputils
+      - pipx
     state: latest
