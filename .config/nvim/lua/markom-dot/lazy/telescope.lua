@@ -27,5 +27,19 @@ return {
         cwd = vim.fn.stdpath("config"),
       })
     end, { desc = "Grep files in nvim config." })
+
+    vim.api.nvim_create_user_command("FindPEP", function()
+      builtin.find_files({
+        prompt_title = "Python Enhancement Proposals",
+        cwd = "~/research/python/peps/peps/",
+      })
+    end, { desc = "Find PEP files." })
+
+    vim.api.nvim_create_user_command("GrepPEP", function()
+      builtin.live_grep({
+        prompt_title = "Python Enhancement Proposals",
+        cwd = "~/research/python/peps/peps/",
+      })
+    end, { desc = "Grep PEP files." })
   end,
 }
