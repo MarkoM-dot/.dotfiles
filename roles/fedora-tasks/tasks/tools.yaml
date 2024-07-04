@@ -6,6 +6,7 @@
       - make
       - gcc
       - gcc-c++
+      - sqlite
       - glibc-devel
       - kernel-devel
       - automake
