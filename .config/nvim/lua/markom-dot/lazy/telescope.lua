@@ -41,5 +41,19 @@ return {
         cwd = "~/research/python/peps/peps/",
       })
     end, { desc = "Grep PEP files." })
+
+    vim.api.nvim_create_user_command("FindPythonDoc", function()
+      builtin.find_files({
+        prompt_title = "Python Documentation",
+        cwd = "~/research/python/cpython/Doc",
+      })
+    end, { desc = "Find Python documentation files." })
+
+    vim.api.nvim_create_user_command("GrepPythonDoc", function()
+      builtin.live_grep({
+        prompt_title = "Python Documentation",
+        cwd = "~/research/python/cpython/Doc/",
+      })
+    end, { desc = "Grep Python Documentation files." })
   end,
 }
