@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -o errexit
 
 EXE_DIR=$( dirname "$( realpath "${0}")")
@@ -33,35 +33,32 @@ arch() {
     echo "Arch btw"
 }
 
+declare -A osInfo
+
+osInfo["fedora-release"]=fedora
+osInfo["debian_version"]=debian
+osInfo["arch-release"]=arch
 
 OS=$( uname )
 found_distro=false
 case $OS in
     'Linux')
-        if [ -f "/etc/fedora-release" ]; then
-            printf "\n\nIdentified: Fedora\n\n"
-            fedora
-            found_distro=true
-        elif [ -f "/etc/debian_version" ]; then
-            printf "\n\nIdentified: Debian\n\n"
-            debian
-            found_distro=true
-        elif [ -f "/etc/arch-release" ]; then
-            printf "\n\nIdentified: Arch btw\n\n"
-            arch
-            found_distro=true
-        fi
-
+        for distro in "${!osInfo[@]}"; do
+            if [[ -f "/etc/"$distro ]]; then
+                printf "\n\nIdentified: %s\n\n" "$distro"
+                ${osInfo[$distro]}
+                found_distro=true
+                break
+            fi
+        done
         if [ "$found_distro" = false ]; then
             echo "Could not find Linux distribution..."
             exit 1
         fi;;
-
     'Darwin')
         if ! [ -x "$(command -v brew)" ]; then
             curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh
         fi
-
         if ! [ -x "$(command -v ansible)" ]; then
             brew install ansible
         fi;;
