@@ -39,7 +39,7 @@ return {
         },
         clangd = {},
         pyright = {},
-        tsserver = {},
+        ts_ls = {},
         bashls = {},
         yamlls = {},
         cssls = {},
