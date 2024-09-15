@@ -1,29 +1,19 @@
 - name: Set up local machine
   hosts: local
-  become: yes
-  become_user: root
   connection: local
-  gather_facts: no
+  gather_facts: yes
 
-  pre_tasks:
-    - name: Determine become_method and include roles by OS family
-      setup:
-        gather_subset:
-          - '!all'
-          - '!any'
-          - '!network'
-          - '!virtual'
-          - '!hardware'
-          - '!facter'
-          - '!ohai'
-          - '!windows'
-      changed_when: false
-
+  tasks:
     - block:
-        - name: Set privilege escalation method for RedHat
-          set_fact:
-            ansible_become_method: sudo
-
         - name: Include RedHat roles
           include_tasks: roles/fedora-tasks/tasks/main.yml
+      become: yes
+      become_user: root
+      become_method: sudo
       when: ansible_os_family == 'RedHat'
+
+    - block:
+        - name: Include MacOS roles
+          include_tasks: roles/mac-tasks/tasks/main.yml
+      when: ansible_os_family == 'Darwin'
+

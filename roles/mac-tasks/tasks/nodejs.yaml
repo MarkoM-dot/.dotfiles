@@ -1,0 +1,6 @@
+- name: Install node
+  community.general.homebrew:
+    name:
+      - nodejs
+      - pnpm
+    state: latest

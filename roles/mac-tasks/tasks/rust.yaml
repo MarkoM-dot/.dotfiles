@@ -1,0 +1,8 @@
+- name: Install rust and related tools
+  community.general.homebrew:
+    name:
+      - rust
+      - ripgrep
+      - fd
+      - starship
+    state: latest

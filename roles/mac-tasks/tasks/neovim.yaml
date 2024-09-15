@@ -1,0 +1,17 @@
+- name: Install neovim and luarocks
+  community.general.homebrew:
+    name:
+      - luarocks
+      - neovim
+
+- name: Install pynvim
+  ansible.builtin.pip:
+    name: pynvim
+    break_system_packages: true
+    state: latest
+
+- name: Install node neovim
+  community.general.npm:
+    name: neovim
+    global: true
+    state: latest

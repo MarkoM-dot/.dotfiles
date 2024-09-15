@@ -1,0 +1,4 @@
+- name: Install community.general collection
+  community.general.ansible_galaxy_install:
+    type: collection
+    name: community.general
