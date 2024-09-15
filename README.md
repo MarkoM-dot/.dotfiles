@@ -47,12 +47,12 @@ docker run -it fedora-dotfiles
 
 ## What now?
 
-The script works on Fedora! If another distro tickles my fancy I'll make the
-necessary adjustments.
+This automation works on Fedora and Macbook Pro M3! If another distro tickles
+my fancy I'll make the necessary adjustments.
 
-# MacOS
+## MacOS
 
-Associative arrays appeared in Bash version 4. Use homebrew to install the latest 
-Bash version and set it as your default shell. Apple Silicon machines have
-an older version of Bash and so the script will not work; upgrading to a newer
-Bash version is preferable either way.
+Associative arrays appeared in Bash version 4. Use homebrew to install the
+latest Bash version and set it as your default shell. Apple Silicon machines
+have an older version of Bash and so the script will not work; upgrading to a
+newer Bash version is preferable either way.
