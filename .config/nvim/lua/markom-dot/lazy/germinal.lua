@@ -1,6 +1,6 @@
 return {
   {
-    dir = "/home/markom-dot/research/germinal",
+    "MarkoM-dot/germinal",
     event = "VeryLazy",
     config = function()
       local root_dir = "/home/markom-dot/notes"
