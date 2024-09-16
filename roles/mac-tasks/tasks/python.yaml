@@ -1,4 +1,5 @@
-- name: Install python
+- name: Install python and pre-commit
   community.general.homebrew:
     name:
       - python
+      - pre-commit
