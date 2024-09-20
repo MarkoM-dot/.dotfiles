@@ -3,7 +3,7 @@ return {
     "MarkoM-dot/germinal",
     event = "VeryLazy",
     config = function()
-      local root_dir = "/home/markom-dot/notes"
+      local root_dir = vim.fn.expand("~") .. "/notes"
       local germinal = require("germinal")
       local example = require("germinal.examples")
       germinal.setup({
