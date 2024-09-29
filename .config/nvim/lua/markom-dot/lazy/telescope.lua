@@ -14,6 +14,14 @@ return {
     map("n", "<leader>K", builtin.keymaps, {})
     map("n", "<leader>S", builtin.git_status, {})
 
+    map("v", "<leader>r", function()
+      -- Set visually selected text in register and pass it to live_grep
+      vim.api.nvim_exec2('noau normal! "vy"', {})
+      local register = vim.fn.getreg("v")
+      local text = string.gsub(register, "\n", "")
+      return builtin.live_grep({ default_text = text })
+    end, {})
+
     vim.api.nvim_create_user_command("FindConfig", function()
       builtin.find_files({
         prompt_title = "nvim config",
