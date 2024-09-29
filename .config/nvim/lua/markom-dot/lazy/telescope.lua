@@ -19,7 +19,10 @@ return {
       vim.api.nvim_exec2('noau normal! "vy"', {})
       local register = vim.fn.getreg("v")
       local text = string.gsub(register, "\n", "")
-      return builtin.live_grep({ default_text = text })
+      return builtin.grep_string({
+        prompt_title = "Visual Grep",
+        default_text = text,
+      })
     end, {})
 
     vim.api.nvim_create_user_command("FindConfig", function()
