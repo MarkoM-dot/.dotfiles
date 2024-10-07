@@ -7,8 +7,9 @@
 
 [includeIf "gitdir:~/work/"]
     path = .work.gitconfig
-[includeIf "gitdir:~/"]
+[includeIf "gitdir:~/research/"]
     path = .gitconfig.d/.research.gitconfig
+
 [init]
 	defaultBranch = main
 
