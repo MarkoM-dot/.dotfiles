@@ -2,4 +2,3 @@
   community.general.homebrew:
     name:
       - python
-      - pre-commit
