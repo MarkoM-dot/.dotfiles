@@ -1,3 +1,10 @@
+- name: Install neovim dependencies
+  ansible.builtin.package:
+    name:
+      - ninja-build
+      - gettext
+      - build-essential
+
 - name: Install luarocks
   ansible.builtin.package:
     name: luarocks
