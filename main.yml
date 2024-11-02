@@ -13,6 +13,14 @@
       when: ansible_os_family == 'RedHat'
 
     - block:
+        - name: Include Ubuntu roles
+          include_tasks: roles/ubuntu-tasks/tasks/main.yml
+      become: yes
+      become_user: root
+      become_method: sudo
+      when: ansible_os_family == 'Debian'
+
+    - block:
         - name: Include MacOS roles
           include_tasks: roles/mac-tasks/tasks/main.yml
       when: ansible_os_family == 'Darwin'

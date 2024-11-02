@@ -40,14 +40,18 @@ stow -D .
 
 ## Testing
 
+If you have docker installed you may see what the environment looks like with
+the following two commands.
+
 ```sh
+# substitute fedora for ubuntu if needed
 docker build -f Dockerfile.Fedora -t fedora-dotfiles .
 docker run -it fedora-dotfiles
 ```
 
 ## What now?
 
-This automation works on Fedora and Macbook Pro M3! If another distro tickles
+This automation works on Fedora, Ubuntu, and Macbook Pro M3! If another distro tickles
 my fancy I'll make the necessary adjustments.
 
 ## MacOS
