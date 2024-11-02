@@ -1,0 +1,23 @@
+- name: Update cache
+  ansible.builtin.package:
+    update_cache: yes
+
+- name: Install community.general collection
+  community.general.ansible_galaxy_install:
+    type: collection
+    name: community.general
+
+- name: Check .bashrc file exists
+  stat:
+    path: "{{ ansible_env.HOME }}/.bashrc"
+  register: stat_result
+
+- name: Use bashrc file if none exists
+  when: not stat_result.stat.exists
+  become: true
+  ansible.builtin.copy:
+    src: .bashrc
+    dest: /home/{{ current_user }}/.bashrc
+    owner: "{{ current_user }}"
+    group: "{{ current_group }}"
+    mode: 0644

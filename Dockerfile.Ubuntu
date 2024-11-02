@@ -1,0 +1,15 @@
+FROM ubuntu:latest
+
+RUN apt-get update && \
+    apt-get -y install sudo
+RUN useradd markom-dot && \
+    usermod -aG sudo markom-dot && \
+    echo 'markom-dot ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+USER markom-dot
+
+WORKDIR /home/markom-dot/.dotfiles
+
+COPY --chown=markom-dot:markom-dot . .
+
+ENV TEST=TEST
+RUN ./bin/dotfiles | tee /tmp/dotfiles_log
