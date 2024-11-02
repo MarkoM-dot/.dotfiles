@@ -3,10 +3,32 @@
     name: luarocks
     state: latest
 
+- name: Clone neovim repo
+  ansible.builtin.git:
+    repo: https://github.com/neovim/neovim
+    dest: "{{ ansible_env.HOME }}/oss/neovim"
+    clone: true
+    version: v0.10.2
+
+- name: Build neovim release
+  community.general.make:
+    chdir: "{{ ansible_env.HOME }}/oss/neovim"
+    params:
+      CMAKE_BUILD_TYPE: Release
+
 - name: Install neovim
-  ansible.builtin.package:
-    name: neovim
-    state: latest
+  become: true
+  community.general.make:
+    chdir: "{{ ansible_env.HOME }}/oss/neovim"
+    target: install
+      
+- name: Change ownership of neovim repo
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/oss/"
+    owner: "{{ current_user }}"
+    group: "{{ current_group }}"
+    state: directory
+    recurse: true
 
 - name: Install pynvim
   ansible.builtin.pip:

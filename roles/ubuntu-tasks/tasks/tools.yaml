@@ -20,4 +20,5 @@
       - linux-tools-common
       - net-tools
       - pipx
+      - gettext
     state: latest
