@@ -16,20 +16,31 @@
     dest: "{{ ansible_env.HOME }}/oss/neovim"
     clone: true
     version: v0.10.2
+  register: neovim_clone
+  changed_when: neovim_clone.after is not none and neovim_clone.before != neovim_clone.after
+
+- name: Remove build if exists
+  when: neovim_clone.changed
+  community.general.make:
+    chdir: "{{ ansible_env.HOME }}/oss/neovim"
+    target: distclean
 
 - name: Build neovim release
+  when: neovim_clone.changed
   community.general.make:
     chdir: "{{ ansible_env.HOME }}/oss/neovim"
     params:
       CMAKE_BUILD_TYPE: Release
 
 - name: Install neovim
+  when: neovim_clone.changed
   become: true
   community.general.make:
     chdir: "{{ ansible_env.HOME }}/oss/neovim"
     target: install
       
 - name: Change ownership of neovim repo
+  when: neovim_clone.changed
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/oss/"
     owner: "{{ current_user }}"
