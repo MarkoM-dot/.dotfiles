@@ -13,7 +13,6 @@ set.wrap = true
 set.number = true
 set.relativenumber = true
 set.hlsearch = false
-set.termguicolors = true
 set.splitbelow = true
 set.splitright = true
 set.errorbells = false
