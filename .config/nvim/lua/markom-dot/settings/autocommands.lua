@@ -11,10 +11,13 @@ autocmd("TextYankPost", {
 })
 
 autocmd("TermOpen", {
-  command = "setlocal nonumber norelativenumber",
   group = vim.api.nvim_create_augroup("TerminalSettings", { clear = true }),
   desc = "No line numbers in terminal mode",
   pattern = "term://*",
+  callback = function()
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  end
 })
 
 autocmd("LspAttach", {
