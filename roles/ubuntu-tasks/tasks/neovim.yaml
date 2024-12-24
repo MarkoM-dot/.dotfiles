@@ -10,24 +10,32 @@
     name: luarocks
     state: latest
 
+- name: Check if Neovim is installed
+  ansible.builtin.command: nvim --version
+  register: neovim_installed
+  ignore_errors: true
+
 - name: Clone neovim repo
   ansible.builtin.git:
     repo: https://github.com/neovim/neovim
     dest: "{{ ansible_env.HOME }}/oss/neovim"
     clone: true
     version: v0.10.2
+  when: neovim_installed.rc != 0
 
 - name: Build neovim release
   community.general.make:
     chdir: "{{ ansible_env.HOME }}/oss/neovim"
     params:
       CMAKE_BUILD_TYPE: Release
+  when: neovim_installed.rc != 0
 
 - name: Install neovim
   become: true
   community.general.make:
     chdir: "{{ ansible_env.HOME }}/oss/neovim"
     target: install
+  when: neovim_installed.rc != 0
       
 - name: Change ownership of neovim repo
   ansible.builtin.file:
@@ -36,6 +44,7 @@
     group: "{{ current_group }}"
     state: directory
     recurse: true
+  when: neovim_installed.rc != 0
 
 - name: Install pynvim
   ansible.builtin.pip:
