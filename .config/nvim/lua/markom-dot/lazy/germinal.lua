@@ -74,6 +74,16 @@ return {
               return { "# Javascript", "", "> I love it." }
             end,
           },
+          marek = {
+            filetype = "markdown",
+            path = function()
+              return "/marek/"
+            end,
+            filename = function()
+              return "index.md"
+            end,
+            append_lines = example.meeting_append_lines,
+          }
         },
       })
       if pcall(require, "telescope") then

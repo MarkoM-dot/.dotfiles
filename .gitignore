@@ -4,4 +4,6 @@
 .config/nextjs-nodejs/
 .config/astro/
 .config/iterm2/
+.config/uv/
+.config/chromium/
 .venv/
