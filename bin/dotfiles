@@ -90,7 +90,7 @@ if [ -z "$TEST" ]; then
 fi
 
 printf "\n\nRun Ansible playbook...\n\n"
-ansible-playbook "$REPO_DIR/main.yml" -i "$REPO_DIR/inventory" --ask-become-pass --extra-vars "current_user=$USER current_group=$USER_GROUP"
+ansible-playbook "$REPO_DIR/main.yml" -i "$REPO_DIR/inventory" --ask-become-pass --extra-vars "current_user=$USER current_group=$USER_GROUP" -v
 
 printf "\n\nFinished Ansible playbook!\n\n"
 
