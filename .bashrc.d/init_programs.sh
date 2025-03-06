@@ -11,11 +11,7 @@ if [[ "$(uname -m)" == "arm64" ]]; then
   fi
 fi
 
-export PATH="$PATH:$HOME/.cargo/bin"
-export FLYCTL_INSTALL="/home/markom-dot/.fly"
-export PATH="$FLYCTL_INSTALL/bin:$PATH"
-export PNPM_HOME="/home/markom-dot/.local/share/pnpm"
-export PATH="$PATH:$PNPM_HOME"
+export PATH="$PATH:$HOME/.cargo/bin:~/.dotfiles/bin:/home/markom-dot/.local/share/pnpm:/home/markom-dot/.fly"
 
 if [ -x "$(command -v nvim)" ]; then
     export EDITOR="nvim"
