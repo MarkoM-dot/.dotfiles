@@ -1,22 +1,22 @@
-- name: Rust tasks
-  block:
-  - name: Install rust toolchain installer
-    ansible.builtin.package:
-      name:
-        - rustup
-      state: latest
+- name: Install rust toolchain installer
+  ansible.builtin.package:
+    name:
+      - rustup
+    state: latest
 
+- name: Rust tasks for user
+  block:
   - name: Install stable release
     ansible.builtin.shell: rustup default stable
 
-  - name: Install neovim tools
+  - name: Install nvim tools with cargo
     community.general.cargo:
       name:
         - ripgrep
         - fd-find
       state: latest
 
-  - name: Install starhip
+  - name: Install starship
     community.general.cargo:
       name:
         - starship
