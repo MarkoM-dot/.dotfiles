@@ -36,7 +36,7 @@
     chdir: "{{ ansible_env.HOME }}/oss/neovim"
     target: install
   when: neovim_installed.rc != 0
-      
+
 - name: Change ownership of neovim repo
   ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/oss/"
