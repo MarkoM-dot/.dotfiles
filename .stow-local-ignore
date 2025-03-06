@@ -13,6 +13,7 @@ misc
 hosts
 Dockerfile
 Dockerfile.*
+ansible.cfg
 
 ^/main.*
 ^/README.*
