@@ -3,4 +3,5 @@
     name:
       - nodejs
       - npm
+      - pnpm
     state: latest
