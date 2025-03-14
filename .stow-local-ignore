@@ -1,6 +1,7 @@
 /.git
 /.github
 /.gitignore
+/.pre-commit-config.yaml
 
 /stylua.toml
 
@@ -8,6 +9,7 @@
 /inventory
 /tests
 /roles
+/.venv
 
 misc
 hosts
