@@ -1,8 +1,16 @@
+- name: Show Ubuntu version
+  ansible.builtin.debug:
+    msg:
+      - "Identified Ubuntu Version: {{ ansible_distribution_version }}"
+
 - name: Install rust toolchain installer
+  when: >
+    ansible_distribution_version is version('24.10', 'ge')
   ansible.builtin.package:
     name:
       - rustup
     state: latest
+
 
 - name: Rust tasks for user
   block:
@@ -24,3 +32,25 @@
 
   become: true
   become_user: "{{ current_user }}"
+  when: >
+    ansible_distribution_version is version('24.10', 'ge')
+
+- name: Check starship exists
+  become: true
+  become_user: "{{ current_user }}"
+  ansible.builtin.shell: starship --version
+  register: starship_exists
+  ignore_errors: true
+
+- name: Download starship installation script
+  become: true
+  become_user: "{{ current_user }}"
+  ansible.builtin.get_url:
+    url: https://starship.rs/install.sh
+    dest: /tmp/starship_install.sh
+    mode: "0755"
+  when: ansible_distribution_version is version('24.10', 'lt') and starship_exists is failed
+
+- name: Execute starship installation script
+  ansible.builtin.shell: /tmp/starship_install.sh --bin-dir /home/{{ current_user }}/.cargo/bin --yes
+  when: ansible_distribution_version is version('24.10', 'lt') and starship_exists is failed
