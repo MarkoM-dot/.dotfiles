@@ -21,6 +21,7 @@
     dest: "{{ ansible_env.HOME }}/oss/neovim"
     clone: true
     version: v0.11.0
+    depth: 1
   when: neovim_installed.rc != 0
 
 - name: Build neovim release
