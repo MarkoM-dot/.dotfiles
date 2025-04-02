@@ -3,7 +3,6 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "onsails/lspkind-nvim",
-      "saadparwaiz1/cmp_luasnip",
       "hrsh7th/cmp-buffer",
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
@@ -18,11 +17,6 @@ return {
 
       lspkind.init({})
       cmp.setup({
-        snippet = {
-          expand = function(args)
-            require("luasnip").lsp_expand(args.body)
-          end,
-        },
         mapping = cmp.mapping.preset.insert({
           ["<C-n>"] = cmp.mapping.select_next_item(),
           ["<C-p>"] = cmp.mapping.select_prev_item(),
@@ -37,7 +31,6 @@ return {
         sources = {
           { name = "nvim_lsp" },
           { name = "nvim_lua" },
-          { name = "luasnip" },
           { name = "path" },
           { name = "gh_issues" },
           { name = "treesitter" },
@@ -54,15 +47,14 @@ return {
               treesitter = "[Tree]",
               path = "[Path]",
               gh_issues = "[gh_issues]",
-              luasnip = "[LuaSnip]",
             },
           }),
         },
       })
-      cmp.setup.filetype({"sql"}, {
+      cmp.setup.filetype({ "sql" }, {
         sources = {
-          {name = "vim-dadbod-completion"},
-          {name = "buffer"},
+          { name = "vim-dadbod-completion" },
+          { name = "buffer" },
         },
       })
     end,
