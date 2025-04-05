@@ -9,6 +9,8 @@
     path = .work.gitconfig
 [includeIf "gitdir:~/research/"]
     path = .gitconfig.d/.research.gitconfig
+[includeIf "gitdir:~/oss/"]
+    path = .gitconfig.d/.research.gitconfig
 
 [init]
 	defaultBranch = main
