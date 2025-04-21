@@ -7,6 +7,7 @@ return {
       local germinal = require("germinal")
       local example = require("germinal.examples")
       germinal.setup({
+        menu_config = {},
         root_dir = root_dir,
         sections = {
           journal = {
@@ -83,7 +84,7 @@ return {
               return "index.md"
             end,
             append_lines = example.meeting_append_lines,
-          }
+          },
         },
       })
       if pcall(require, "telescope") then
