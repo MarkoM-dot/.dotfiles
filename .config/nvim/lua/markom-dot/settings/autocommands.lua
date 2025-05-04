@@ -17,7 +17,7 @@ autocmd("TermOpen", {
   callback = function()
     vim.opt.number = false
     vim.opt.relativenumber = false
-  end
+  end,
 })
 
 autocmd("LspAttach", {
@@ -34,6 +34,9 @@ autocmd("LspAttach", {
       vim.lsp.buf.declaration()
     end, opts)
     map("n", "gr", function()
+      vim.lsp.buf.references()
+    end, opts)
+    map("n", "gR", function()
       vim.lsp.buf.rename()
     end, opts)
     map("n", "gi", function()
