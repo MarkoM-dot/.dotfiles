@@ -17,4 +17,8 @@ if [ -x "$(command -v nvim)" ]; then
     export EDITOR="nvim"
 fi
 
+if [ -f "$HOME/.bashrc.d/extras.sh" ]; then
+    source "$HOME/.bashrc.d/extras.sh"
+fi
+
 eval "$(starship init bash)"

@@ -5,6 +5,7 @@
 
 /stylua.toml
 
+.bashrc.d/extras.sh
 /bin
 /inventory
 /tests

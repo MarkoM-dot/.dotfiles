@@ -1,3 +1,4 @@
+.bashrc.d/extras.sh
 .config/gh
 .config/go
 .config/pulse
