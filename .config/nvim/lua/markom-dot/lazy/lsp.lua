@@ -47,6 +47,7 @@ return {
         dockerls = {},
         sqlls = {},
         marksman = {},
+        terraformls = {},
         gopls = {},
         rust_analyzer = {
           capabilities = capabilities,
