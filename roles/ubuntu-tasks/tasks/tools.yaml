@@ -21,4 +21,5 @@
       - net-tools
       - pipx
       - gettext
+      - tldr
     state: latest
