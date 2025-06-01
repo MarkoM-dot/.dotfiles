@@ -1,6 +1,12 @@
+- name: Add NodeSource Repository
+  ansible.builtin.shell: |
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+  args:
+    executable: /bin/bash
+
 - name: Download nodejs
   ansible.builtin.package:
     name:
       - nodejs
-      - npm
     state: latest
+    update_cache: true
