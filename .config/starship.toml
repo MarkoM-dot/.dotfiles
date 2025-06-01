@@ -1,0 +1,6 @@
+[status]
+disabled = false
+symbol = ''
+
+[git_commit]
+only_detached = false

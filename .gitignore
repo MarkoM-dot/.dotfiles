@@ -7,4 +7,5 @@
 .config/iterm2/
 .config/uv/
 .config/chromium/
+.config/git/work-config
 .venv/

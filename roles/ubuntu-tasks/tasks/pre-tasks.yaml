@@ -1,6 +1,6 @@
 - name: Update cache
   ansible.builtin.package:
-    update_cache: yes
+    update_cache: true
 
 - name: Install community.general collection
   community.general.ansible_galaxy_install:
