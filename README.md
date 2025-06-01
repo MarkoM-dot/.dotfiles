@@ -71,8 +71,9 @@ rm -rf ~/.local/state/nvim
 rm -rf ~/.cache/nvim
 
 # find the executable and remove it
+type nvim
 rm /usr/local/bin/nvim
 ```
 
-Now update the neovim task and update the version number.
+Now update the version number in the neovim ansible task.
 
