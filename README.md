@@ -46,7 +46,7 @@ the following two commands.
 ```sh
 # substitute fedora for ubuntu if needed
 docker build -f Dockerfile.Fedora -t fedora-dotfiles .
-docker run -it fedora-dotfiles
+docker run --rm -it fedora-dotfiles
 ```
 
 ## What now?
@@ -60,3 +60,19 @@ Associative arrays appeared in Bash version 4. Use homebrew to install the
 latest Bash version and set it as your default shell. Apple Silicon machines
 have an older version of Bash and so the script will not work; upgrading to a
 newer Bash version is preferable either way.
+
+## Upgrading Neovim
+
+Remove neovim related folders:
+
+```sh
+rm -rf ~/.local/share/nvim
+rm -rf ~/.local/state/nvim
+rm -rf ~/.cache/nvim
+
+# find the executable and remove it
+rm /usr/local/bin/nvim
+```
+
+Now update the neovim task and update the version number.
+
