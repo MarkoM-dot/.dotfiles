@@ -8,4 +8,5 @@
 .config/uv/
 .config/chromium/
 .config/git/work-config
+.config/git/config-work
 .venv/
