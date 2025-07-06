@@ -15,8 +15,8 @@ autocmd("TermOpen", {
   desc = "No line numbers in terminal mode",
   pattern = "term://*",
   callback = function()
-    vim.opt.number = false
-    vim.opt.relativenumber = false
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
   end,
 })
 
