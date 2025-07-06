@@ -15,14 +15,6 @@ M.command = function(cmd, opts)
   end
 end
 
----@param keymap string
----@param cmd string
-M.file_exec = function(keymap, cmd)
-  vim.keymap.set("n", keymap, function()
-    vim.api.nvim_exec2(cmd .. vim.fn.shellescape(vim.fn.expand("%")), {})
-  end, { buffer = true, silent = true })
-end
-
 ---Set the appropriate indentation for
 ---frontend development.
 M.frontend_indentation = function()
