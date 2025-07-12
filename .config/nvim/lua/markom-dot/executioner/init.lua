@@ -1,7 +1,3 @@
---[[
--- Simple command executor.
---]]
-
 local args = { "echo", "hello", "from", "the", "executioner" }
 
 vim.keymap.set("n", "<leader>e", function()
