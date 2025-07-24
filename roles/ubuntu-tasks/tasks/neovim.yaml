@@ -20,7 +20,7 @@
     repo: https://github.com/neovim/neovim
     dest: "{{ ansible_env.HOME }}/oss/neovim"
     clone: true
-    version: v0.11.2
+    version: v0.11.3
     depth: 1
   when: neovim_installed.rc != 0
 
