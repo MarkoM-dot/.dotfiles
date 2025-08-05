@@ -1,7 +1,7 @@
 - name: Check if cargo is installed
   shell: cargo --version
   register: cargo_exists
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Download rust and cargo
   when: cargo_exists is failed
@@ -21,7 +21,7 @@
 
 - name: Install rust and cargo
   when: cargo_exists is failed
-  become: yes
+  become: true 
   become_user: "{{ current_user }}"
   shell: /tmp/sh.rustup.sh -y
 
@@ -37,7 +37,7 @@
   become_user: "{{ current_user }}"
   shell: starship --version
   register: starship_exists
-  ignore_errors: yes
+  ignore_errors: true
 
 - name: Download starship installation script
   when: starship_exists is failed
