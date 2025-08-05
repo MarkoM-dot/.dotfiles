@@ -22,5 +22,4 @@
       - libicu
       - perf
       - iputils
-      - uv
     state: latest
