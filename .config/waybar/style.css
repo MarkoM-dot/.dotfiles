@@ -1,0 +1,158 @@
+@import "./rose-pine.css";
+
+* {
+  border: none;
+  border-radius: 0;
+  font-family: "JetBrainsMono Nerd Font Mono";
+  font-weight: bold;
+  font-size: 16px;
+  min-height: 0;
+}
+
+window#waybar {
+  background: rgba(21, 18, 27, 0);
+  color: @text;
+}
+
+tooltip {
+  background: @base;
+  border-radius: 10px;
+  border-width: 2px;
+  border-style: solid;
+  border-color: @overlay;
+}
+
+#workspaces button {
+  padding: 5px;
+  color: @highlightMed;
+  margin-right: 5px;
+}
+
+#workspaces button.active {
+  color: @text;
+}
+
+#workspaces button.focused {
+  color: @base;
+  background: @foam;
+}
+
+#workspaces button.urgent {
+  color: @base;
+  background: @pine;
+}
+
+#workspaces button:hover {
+  background: @highlightLow;
+  color: @text;
+}
+
+#custom-power_profile,
+#window,
+#clock,
+#battery,
+#pulseaudio,
+#network,
+#bluetooth,
+#temperature,
+#workspaces,
+#tray,
+#cpu,
+#memory,
+#language,
+#backlight {
+  background: @base;
+  opacity: 0.9;
+  padding: 0px 10px;
+  margin: 3px 0px;
+  margin-top: 10px;
+  border: 1px solid @overlay;
+}
+
+#memory {
+  color: @foam;
+}
+
+#temperature {
+  color: @rose;
+  border-right: 0px;
+}
+
+#temperature.critical {
+  color: @love;
+}
+
+#backlight {
+  color: @text;
+  margin-right: 10px;
+}
+
+#tray {
+  margin-right: 10px;
+}
+
+#workspaces {
+  background: @base;
+  margin-left: 10px;
+  padding-right: 0px;
+  padding-left: 5px;
+}
+
+#custom-power_profile {
+  color: @foam;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+#window {
+  margin-left: 60px;
+  margin-right: 60px;
+}
+
+#clock {
+  color: @gold;
+  margin-left: 10px;
+  border-right: 0px;
+}
+
+#network {
+  color: @love;
+  /* border-left: 0px; */
+  border-right: 0px;
+}
+
+#bluetooth {
+  color: @gold;
+  border-right: 0px;
+  /* margin-right: 10px; */
+}
+
+#pulseaudio {
+  color: @iris;
+  /* border-left: 0px; */
+  border-right: 0px;
+}
+
+#pulseaudio.microphone {
+  color: #c4a7e7;
+  border-left: 0px;
+  border-right: 0px;
+  margin-right: 10px;
+}
+
+#battery {
+  color: @foam;
+  margin-right: 10px;
+  border-left: 0px;
+}
+
+#custom-spotify {
+  min-width: 140px;
+  /* overflow: hidden; */
+  /* text-overflow: ellipsis; */
+  padding: 0 10px;
+  color: @foam;
+  padding: 0px 10px;
+  margin: 3px 0px;
+  margin-top: 10px;
+}
