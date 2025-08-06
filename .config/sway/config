@@ -68,6 +68,12 @@ output * bg /usr/share/backgrounds/default.jxl fill
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
+input "1160:4141:VEN_0488:00_0488:102D_Touchpad" {
+  tap enabled
+  dwt enabled
+  natural_scroll enabled
+  middle_emulation enabled
+}
 
 ### Key bindings
 #
