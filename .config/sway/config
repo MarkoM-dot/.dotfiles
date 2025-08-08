@@ -75,6 +75,11 @@ input "1160:4141:VEN_0488:00_0488:102D_Touchpad" {
   middle_emulation enabled
 }
 
+input * {
+  xkb_layout "us,hr"
+  xkb_options "grp:win_space_toggle"
+}
+
 ### Key bindings
 #
 # Basics:
