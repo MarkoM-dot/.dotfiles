@@ -99,6 +99,9 @@ input * {
     # Start mail client
     bindsym $mod+e exec $email
 
+    # Screenshot area
+    bindsym $mod+Shift+s exec grimshot save area
+
     # Drag floating windows by holding down $mod and left mouse button.
     # Resize them with right mouse button + $mod.
     # Despite the name, also works for non-floating windows.
