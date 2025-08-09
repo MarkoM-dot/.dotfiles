@@ -117,19 +117,16 @@ tooltip {
 
 #network {
   color: @love;
-  /* border-left: 0px; */
   border-right: 0px;
 }
 
 #bluetooth {
   color: @gold;
   border-right: 0px;
-  /* margin-right: 10px; */
 }
 
 #pulseaudio {
   color: @iris;
-  /* border-left: 0px; */
   border-right: 0px;
 }
 
