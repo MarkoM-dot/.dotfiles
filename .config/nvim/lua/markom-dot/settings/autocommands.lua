@@ -21,26 +21,39 @@ autocmd("TermOpen", {
 })
 
 autocmd("LspAttach", {
-  callback = function(e)
-    -- Enable completion triggered by <c-x><c-o>
-    vim.bo[e.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
-    local opts = { buffer = e.buf }
+  group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
+  desc = "Set keymaps when Lsp is attached.",
+  callback = function(args)
     local map = vim.keymap.set
+    local opts = { buffer = args.buf }
+    local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
+
+    if client:supports_method("textDocument/implementation") then
+      map("n", "gi", function()
+        vim.lsp.buf.implementation()
+      end, opts)
+    end
+    if client:supports_method("textDocument/completion") then
+      local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
+      client.server_capabilities.completionProvider.triggerCharacters = chars
+      vim.opt.completeopt = {"menu", "menuone", "noinsert", "fuzzy", "popup"}
+      vim.lsp.completion.enable(true, client.id, args.buf, {autotrigger = true})
+      map("i", "<C-Space>", function() vim.lsp.completion.get() end)
+    end
+
     map("n", "gd", function()
       vim.lsp.buf.definition()
     end, opts)
-    map("n", "gD", function()
-      vim.lsp.buf.declaration()
-    end, opts)
+    if client:supports_method("textDocument/declaration") then
+      map("n", "gD", function()
+        vim.lsp.buf.declaration()
+      end, opts)
+    end
     map("n", "gr", function()
       vim.lsp.buf.references()
     end, opts)
     map("n", "gR", function()
       vim.lsp.buf.rename()
-    end, opts)
-    map("n", "gi", function()
-      vim.lsp.buf.implementation()
     end, opts)
     map("n", "<leader>R", function()
       vim.lsp.buf.rename()
@@ -63,6 +76,4 @@ autocmd("LspAttach", {
       common.command({ cmd = "Telescope", args = { "diagnostics" } })
     )
   end,
-  group = vim.api.nvim_create_augroup("UserLspConfig", { clear = true }),
-  desc = "Set keymaps when Lsp is attached.",
 })
