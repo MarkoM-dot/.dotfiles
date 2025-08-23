@@ -36,7 +36,7 @@ autocmd("LspAttach", {
     if client:supports_method("textDocument/completion") then
       local chars = {}; for i = 32, 126 do table.insert(chars, string.char(i)) end
       client.server_capabilities.completionProvider.triggerCharacters = chars
-      vim.opt.completeopt = {"menu", "menuone", "noinsert", "fuzzy", "popup"}
+      vim.opt.completeopt = {"menu", "menuone", "noselect"}
       vim.lsp.completion.enable(true, client.id, args.buf, {autotrigger = true})
       map("i", "<C-Space>", function() vim.lsp.completion.get() end)
     end

@@ -58,4 +58,10 @@ vim.lsp.config["dockerls"] = {
   },
 }
 
-vim.lsp.enable({"lua_ls", "pyright", "rust_analyzer", "dockerls"})
+vim.lsp.config["yamlls"] = {
+  cmd = {"yaml-language-server", "--stdio"},
+  filetypes = { 'yaml', 'yaml.docker-compose', 'yaml.gitlab', 'yaml.helm-values' },
+  root_markers = {".git"}
+}
+
+vim.lsp.enable({"lua_ls", "pyright", "rust_analyzer", "dockerls", "yamlls"})
