@@ -21,7 +21,7 @@
 
 - name: Install rust and cargo
   when: cargo_exists is failed
-  become: true 
+  become: true
   become_user: "{{ current_user }}"
   shell: /tmp/sh.rustup.sh -y
 

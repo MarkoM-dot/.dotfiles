@@ -126,7 +126,7 @@
     },
     "temperature": {
         // "thermal-zone": 2,
-        // /sys/class/hwmon/hwmon8/temp1_label 
+        // /sys/class/hwmon/hwmon8/temp1_label
         // Package id 0 # gives overall CPU temperature
         "hwmon-path": "/sys/class/hwmon/hwmon8/temp1_input",
         "critical-threshold": 80,
