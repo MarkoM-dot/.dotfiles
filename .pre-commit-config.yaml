@@ -1,6 +1,6 @@
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v5.0.0
+    rev: v6.0.0
     hooks:
     - id: trailing-whitespace
     - id: check-yaml
@@ -10,4 +10,4 @@ repos:
   - repo: https://github.com/JohnnyMorganz/StyLua
     rev: v2.1.0
     hooks:
-    - id: stylua-system
+    - id: stylua

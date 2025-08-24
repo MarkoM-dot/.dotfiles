@@ -10,7 +10,6 @@ require("markom-dot.settings.mappings")
 require("markom-dot.settings.autocommands")
 prequire("markom-dot.settings.lsp", "Could not import lsp configuration.")
 
-
 vim.loader.enable() -- might be default in v10.x.x
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
