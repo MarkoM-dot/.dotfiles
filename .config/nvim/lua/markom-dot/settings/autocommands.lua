@@ -39,7 +39,7 @@ autocmd("LspAttach", {
         table.insert(chars, string.char(i))
       end
       client.server_capabilities.completionProvider.triggerCharacters = chars
-      vim.opt.completeopt = { "menu", "menuone", "noselect" }
+      vim.opt.completeopt = { "menu", "menuone", "noinsert", "popup" }
       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
       map("i", "<C-Space>", function()
         vim.lsp.completion.get()
@@ -67,10 +67,10 @@ autocmd("LspAttach", {
       vim.lsp.buf.format({ async = true })
     end, opts)
     map("n", "<leader>df", function()
-      vim.diagnostic.goto_next()
+      vim.diagnostic.jump({ count = 1, float = true })
     end, opts)
     map("n", "<leader>db", function()
-      vim.diagnostic.goto_prev()
+      vim.diagnostic.jump({ count = -1, float = true })
     end, opts)
     map("n", "<leader>do", function()
       vim.diagnostic.open_float()
