@@ -29,9 +29,7 @@ autocmd("LspAttach", {
     local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
 
     if client:supports_method("textDocument/implementation") then
-      map("n", "gi", function()
-        vim.lsp.buf.implementation()
-      end, opts)
+      map("n", "gi", vim.lsp.buf.implementation, opts)
     end
     if client:supports_method("textDocument/completion") then
       local chars = {}
@@ -41,28 +39,24 @@ autocmd("LspAttach", {
       client.server_capabilities.completionProvider.triggerCharacters = chars
       vim.opt.completeopt = { "menu", "menuone", "noinsert", "popup" }
       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
-      map("i", "<C-Space>", function()
-        vim.lsp.completion.get()
-      end)
+
+      map("i", "<C-Space>", vim.lsp.completion.get)
+
+      -- <CR> selects the suggested word for completion even if the documentation states otherwise
+      -- the keymap below avoids this pain
+      map("i", "<CR>", function()
+        return vim.fn.pumvisible() == 1 and "<C-c>a<CR>" or "<CR>"
+      end, { expr = true, noremap = true })
     end
 
-    map("n", "gd", function()
-      vim.lsp.buf.definition()
-    end, opts)
+    map("n", "gd", vim.lsp.buf.definition, opts)
     if client:supports_method("textDocument/declaration") then
-      map("n", "gD", function()
-        vim.lsp.buf.declaration()
-      end, opts)
+      map("n", "gD", vim.lsp.buf.declaration, opts)
     end
-    map("n", "gr", function()
-      vim.lsp.buf.references()
-    end, opts)
-    map("n", "gR", function()
-      vim.lsp.buf.rename()
-    end, opts)
-    map("n", "<leader>R", function()
-      vim.lsp.buf.rename()
-    end, opts)
+    map("n", "gr", vim.lsp.buf.references, opts)
+    map("n", "gR", vim.lsp.buf.rename, opts)
+
+    map("n", "<leader>R", vim.lsp.buf.rename, opts)
     map("n", ",f", function()
       vim.lsp.buf.format({ async = true })
     end, opts)
@@ -72,9 +66,7 @@ autocmd("LspAttach", {
     map("n", "<leader>db", function()
       vim.diagnostic.jump({ count = -1, float = true })
     end, opts)
-    map("n", "<leader>do", function()
-      vim.diagnostic.open_float()
-    end, opts)
+    map("n", "<leader>do", vim.diagnostic.open_float, opts)
     map(
       "n",
       "<leader>dl",
