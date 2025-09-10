@@ -72,4 +72,16 @@ vim.lsp.config["yamlls"] = {
   root_markers = { ".git" },
 }
 
-vim.lsp.enable({ "lua_ls", "pyright", "rust_analyzer", "dockerls", "yamlls" })
+vim.lsp.config["bashls"] = {
+  cmd = { "bash-language-server", "start" },
+  filetypes = { "bash", "sh" },
+  root_markers = { ".git" },
+}
+
+vim.lsp.config["terraform_ls"] = {
+  cmd = { "terraform-ls", "serve" },
+  filetypes = { "terraform", "terraform-vars" },
+  root_markers = { ".terraform", ".git" },
+}
+
+vim.lsp.enable({ "lua_ls", "pyright", "rust_analyzer", "dockerls", "yamlls", "bashls" })
