@@ -28,3 +28,22 @@ map(
 )
 
 map("t", "<Esc>", [[<C-\><C-n>]])
+
+map("v", "<leader>f", function()
+  -- Yank visually selected text into register
+  vim.api.nvim_exec2('noau normal! "vy"', {})
+  local register = vim.fn.getreg("v")
+  local text = string.gsub(register, "\n", "")
+  -- parse file format
+  local filename, str_lineno, str_col = string.match(text, "([^:]+):?(%d*):?(%d*)$")
+  local lineno = tonumber(str_lineno) or 1
+  local col = tonumber(str_col) or 0
+  -- find file and open the file at the line number and column
+  local ok, err = pcall(function()
+    vim.api.nvim_exec2(":find " .. filename, {})
+    vim.api.nvim_win_set_cursor(0, { tonumber(lineno), tonumber(col) })
+  end)
+  if not ok then
+    vim.notify("Failed to find file..." .. err, vim.log.levels.WARN)
+  end
+end)

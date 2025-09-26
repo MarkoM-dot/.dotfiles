@@ -15,10 +15,11 @@ return {
     map("n", "<leader>S", builtin.git_status, {})
 
     map("v", "<leader>r", function()
-      -- Set visually selected text in register and pass it to live_grep
+      -- Yank visually selected text into register
       vim.api.nvim_exec2('noau normal! "vy"', {})
       local register = vim.fn.getreg("v")
       local text = string.gsub(register, "\n", "")
+      -- Grep yanked text and search project
       return builtin.grep_string({
         prompt_title = "Visual Grep",
         default_text = text,
