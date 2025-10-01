@@ -84,4 +84,12 @@ vim.lsp.config["terraform_ls"] = {
   root_markers = { ".terraform", ".git" },
 }
 
-vim.lsp.enable({ "lua_ls", "pyright", "rust_analyzer", "dockerls", "yamlls", "bashls" })
+vim.lsp.enable({
+  "lua_ls",
+  "pyright",
+  "rust_analyzer",
+  "dockerls",
+  "yamlls",
+  "bashls",
+  "terraform_ls",
+})
