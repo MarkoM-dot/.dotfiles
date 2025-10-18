@@ -8,6 +8,6 @@ repos:
     - id: check-json
     - id: debug-statements
   - repo: https://github.com/JohnnyMorganz/StyLua
-    rev: v2.1.0
+    rev: v2.3.0
     hooks:
     - id: stylua
