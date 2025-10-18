@@ -11,7 +11,7 @@ if [[ "$(uname -m)" == "arm64" ]]; then
   fi
 fi
 
-export PATH="$PATH:$HOME/.cargo/bin:~/.dotfiles/bin:/home/markom-dot/.local/share/pnpm:/home/markom-dot/.fly/bin"
+export PATH="$PATH:$HOME/.cargo/bin:$HOME/.dotfiles/bin:$HOME/.local/share/pnpm:$HOME/.fly/bin"
 
 if [ -x "$(command -v nvim)" ]; then
     export EDITOR="nvim"
