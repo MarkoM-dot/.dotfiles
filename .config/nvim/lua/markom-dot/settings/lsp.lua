@@ -84,7 +84,33 @@ vim.lsp.config["terraform_ls"] = {
   root_markers = { ".terraform", ".git" },
 }
 
+vim.lsp.config["ts-ls"] = {
+  cmd = { "typescript-language-server", "--stdio" },
+  filetypes = {
+    "javascript",
+    "javascriptreact",
+    "javascript.jsx",
+    "typescript",
+    "typescriptreact",
+    "typescript.tsx",
+  },
+  root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+}
+
+vim.lsp.config["astro-ls"] = {
+  cmd = { "astro-ls", "--stdio" },
+  filetypes = { "astro" },
+  root_markers = { "package.json", "tsconfig.json", "jsconfig.json", ".git" },
+  init_options = {
+    typescript = {
+      tsdk = "node_modules/typescript/lib",
+    },
+  },
+}
+
 vim.lsp.enable({
+  "ts-ls",
+  "astro-ls",
   "lua_ls",
   "pyright",
   "rust_analyzer",
