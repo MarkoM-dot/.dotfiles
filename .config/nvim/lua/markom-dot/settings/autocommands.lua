@@ -14,10 +14,7 @@ autocmd("TermOpen", {
   group = vim.api.nvim_create_augroup("TerminalSettings", { clear = true }),
   desc = "No line numbers in terminal mode",
   pattern = "term://*",
-  callback = function()
-    vim.opt_local.number = false
-    vim.opt_local.relativenumber = false
-  end,
+  callback = function() end,
 })
 
 autocmd("LspAttach", {
