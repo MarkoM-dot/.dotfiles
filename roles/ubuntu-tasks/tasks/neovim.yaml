@@ -5,11 +5,6 @@
       - gettext
       - build-essential
 
-- name: Install luarocks
-  ansible.builtin.package:
-    name: luarocks
-    state: latest
-
 - name: Check if Neovim is installed
   ansible.builtin.command: nvim --version
   register: neovim_installed

@@ -1,8 +1,3 @@
-- name: Install luarocks
-  ansible.builtin.package:
-    name: luarocks
-    state: latest
-
 - name: Install neovim
   ansible.builtin.package:
     name: neovim

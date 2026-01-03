@@ -1,7 +1,6 @@
 - name: Install neovim and luarocks
   community.general.homebrew:
     name:
-      - luarocks
       - neovim
 
 - name: Install pynvim
