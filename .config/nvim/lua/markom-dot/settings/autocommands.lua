@@ -3,6 +3,7 @@ local autocmd = vim.api.nvim_create_autocmd
 
 autocmd("FileType", {
   pattern = { "lua", "python", "dockerfile", "rust", "racket" },
+  desc = "Set treesitter highlighting.",
   callback = function(args)
     vim.treesitter.start(args.buf)
   end,
@@ -15,13 +16,6 @@ autocmd("TextYankPost", {
   group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
   desc = "Briefly highlight yanked text.",
   pattern = "*",
-})
-
-autocmd("TermOpen", {
-  group = vim.api.nvim_create_augroup("TerminalSettings", { clear = true }),
-  desc = "No line numbers in terminal mode",
-  pattern = "term://*",
-  callback = function() end,
 })
 
 autocmd("LspAttach", {
@@ -67,7 +61,7 @@ autocmd("LspAttach", {
     map("n", "<leader>df", function()
       vim.diagnostic.jump({ count = 1, float = true })
     end, opts)
-    map("n", "<leader>db", function()
+    map("n", "<leader>dF", function()
       vim.diagnostic.jump({ count = -1, float = true })
     end, opts)
     map("n", "<leader>do", vim.diagnostic.open_float, opts)
