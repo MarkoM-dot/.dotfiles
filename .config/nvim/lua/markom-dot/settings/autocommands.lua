@@ -1,14 +1,6 @@
 local common = require("markom-dot.common")
 local autocmd = vim.api.nvim_create_autocmd
 
-autocmd("FileType", {
-  pattern = { "lua", "python", "dockerfile", "rust", "racket" },
-  desc = "Set treesitter highlighting.",
-  callback = function(args)
-    vim.treesitter.start(args.buf)
-  end,
-})
-
 autocmd("TextYankPost", {
   callback = function()
     vim.highlight.on_yank()
