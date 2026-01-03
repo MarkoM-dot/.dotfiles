@@ -51,7 +51,7 @@ vim.lsp.config["rust_analyzer"] = {
 }
 
 vim.lsp.config["dockerls"] = {
-  cmd = { "docker-langserver", "--stdio" },
+  cmd = { "docker-language-server", "start", "--stdio" },
   filetypes = { "dockerfile", "yaml.docker-compose" },
   root_markers = {
     "Dockerfile",
