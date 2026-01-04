@@ -30,6 +30,7 @@ set.splitright = true
 set.errorbells = false
 set.clipboard:append("unnamedplus")
 
+set.completeopt = { "menu", "menuone", "noinsert", "popup" }
 set.termguicolors = true
 
 vim.cmd([[

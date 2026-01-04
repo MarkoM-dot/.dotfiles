@@ -3,7 +3,7 @@ local autocmd = vim.api.nvim_create_autocmd
 
 autocmd("TextYankPost", {
   callback = function()
-    vim.highlight.on_yank()
+    vim.hl.on_yank()
   end,
   group = vim.api.nvim_create_augroup("YankHighlight", { clear = true }),
   desc = "Briefly highlight yanked text.",
@@ -21,13 +21,8 @@ autocmd("LspAttach", {
     if client:supports_method("textDocument/implementation") then
       map("n", "gi", vim.lsp.buf.implementation, opts)
     end
+
     if client:supports_method("textDocument/completion") then
-      local chars = {}
-      for i = 32, 126 do
-        table.insert(chars, string.char(i))
-      end
-      client.server_capabilities.completionProvider.triggerCharacters = chars
-      vim.opt.completeopt = { "menu", "menuone", "noinsert", "popup" }
       vim.lsp.completion.enable(true, client.id, args.buf, { autotrigger = true })
 
       map("i", "<C-Space>", vim.lsp.completion.get)
@@ -35,7 +30,7 @@ autocmd("LspAttach", {
       -- <CR> selects the suggested word for completion even if the documentation states otherwise
       -- the keymap below avoids this pain
       map("i", "<CR>", function()
-        return vim.fn.pumvisible() == 1 and "<C-c>a<CR>" or "<CR>"
+        return vim.fn.pumvisible() ~= 0 and "<C-c>a<CR>" or "<CR>"
       end, { expr = true, noremap = true })
     end
 

@@ -1,10 +1,6 @@
 require("markom-dot.settings.config")
 require("markom-dot.settings.mappings")
 require("markom-dot.settings.autocommands")
-local success, lsp_module = pcall(require, "markom-dot.settings.lsp")
-if not success then
-  vim.notify("Could not import lsp configuration from: " .. lsp_module)
-end
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -29,3 +25,15 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("markom-dot.lazy", { change_detection = { notify = false } })
+
+vim.lsp.enable({
+  "astrols",
+  "bashls",
+  "dockerls",
+  "luals",
+  "pyright",
+  "rustanalyzer",
+  "terraformls",
+  "tsls",
+  "yamlls",
+})
