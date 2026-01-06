@@ -2,6 +2,18 @@ require("markom-dot.settings.config")
 require("markom-dot.settings.mappings")
 require("markom-dot.settings.autocommands")
 
+vim.lsp.enable({
+  "astrols",
+  "bashls",
+  "dockerls",
+  "luals",
+  "pyright",
+  "rustanalyzer",
+  "terraformls",
+  "tsls",
+  "yamlls",
+})
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   local lazy_repo = "https://github.com/folke/lazy.nvim.git"
@@ -25,15 +37,3 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup("markom-dot.lazy", { change_detection = { notify = false } })
-
-vim.lsp.enable({
-  "astrols",
-  "bashls",
-  "dockerls",
-  "luals",
-  "pyright",
-  "rustanalyzer",
-  "terraformls",
-  "tsls",
-  "yamlls",
-})

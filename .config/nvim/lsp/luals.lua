@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 return {
   -- Command and arguments to start the server.
   cmd = { "lua-language-server" },
