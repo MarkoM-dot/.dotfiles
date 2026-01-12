@@ -5,6 +5,7 @@ require("markom-dot.settings.autocommands")
 vim.lsp.enable({
   "astrols",
   "bashls",
+  "clangd",
   "dockerls",
   "luals",
   "pyright",
