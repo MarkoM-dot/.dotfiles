@@ -16,7 +16,6 @@
       - shellcheck
       - stow
       - git
-      - gh
       - linux-tools-common
       - net-tools
       - pipx
