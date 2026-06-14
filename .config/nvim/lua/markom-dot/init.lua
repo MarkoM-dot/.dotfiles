@@ -8,6 +8,7 @@ vim.lsp.enable({
   "bashls",
   "clangd",
   "dockerls",
+  "leanls",
   "luals",
   "pyright",
   "rustanalyzer",
