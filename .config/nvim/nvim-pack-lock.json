@@ -13,7 +13,7 @@
     "mason": {
       "rev": "bb639d4bf385a4d89f478b83af4d770be05ab7eb",
       "src": "https://github.com/mason-org/mason.nvim",
-      "version": "'v2.3.0'"
+      "version": "'v2.3.1'"
     },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
