@@ -1,0 +1,6 @@
+require("markom-dot.plugins.colorscheme")
+require("markom-dot.plugins.telescope")
+require("markom-dot.plugins.germinal")
+require("markom-dot.plugins.gitsigns")
+require("markom-dot.plugins.mason")
+require("markom-dot.plugins.treesitter")

@@ -13,12 +13,10 @@ fi
 
 export PATH="$PATH:$HOME/.cargo/bin:$HOME/.dotfiles/bin:$HOME/.local/share/pnpm:$HOME/.fly/bin"
 
-if [ -x "$(command -v nvim)" ]; then
-    export EDITOR="nvim"
-fi
+[ -x "$(command -v nvim)" ] && export EDITOR="nvim"
 
-if [ -f "$HOME/.bashrc.d/extras.sh" ]; then
-    source "$HOME/.bashrc.d/extras.sh"
-fi
+[ -f "$HOME/.bashrc.d/extras.sh" ] && source "$HOME/.bashrc.d/extras.sh"
+
+[ -f "$HOME/.elan/env" ] && source "$HOME/.elan/env"
 
 eval "$(starship init bash)"
